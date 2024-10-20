@@ -9,8 +9,9 @@ import ContentBoxContentCenterBottom from '@/assets/box-content-bottom-center.pn
 const useStyles = createStyles(() => ({
   contentBoxHeader: {
     backgroundImage: `url(${ContentBoxHeaderBg})`,
-    backgroundSize: 'cover',
+    backgroundSize: 'contain',
     backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
     height: '1.875vw',
     width: '100%',
   },
@@ -24,7 +25,7 @@ const useStyles = createStyles(() => ({
     color:'#F4FBFE',
     WebkitTextFillColor:'transparent',
     fontWeight:600,
-    width:'7.8125vw'
+    // width:'7.8125vw'
   },
   contentBoxHeaderSubTitle:{
     fontSize:'0.72917vw',
@@ -116,7 +117,7 @@ export const ContentBoxTitle: React.FC<{
   const { styles }  =  useStyles()
 
   return <Flex className={styles.contentBoxHeader} align='center'>
-    <div className={styles.contentBoxHeaderTitle}>{title}</div>
+    <div className={styles.contentBoxHeaderTitle}>{`${title} `}</div>
     <div className={styles.contentBoxHeaderSubTitle}>{subTitle}</div>
   </Flex>
 }
