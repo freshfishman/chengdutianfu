@@ -2,13 +2,64 @@ import { useEffect, useRef } from 'react'
 import { Chart } from '@antv/g2'
 import { createStyles } from 'antd-style'
 import { ContentBoxTitle, ContentBoxContent } from '../ContentBox'
-
+import { Col, Flex, Row } from 'antd'
 
 const useStyles = createStyles(() => ({
   barContainer:{
     height: 'calc(21.4062vw - 2px)',
   }
 }))
+
+const DegreePieChart = () => {
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  const chart = useRef<any>(null)
+  return <div>
+    <Row align='stretch'>
+      <Col span={12}></Col>
+      <Col span={6} ref={containerRef}></Col>
+    </Row>
+  </div>
+}
+
+const AgePieChart = () => {
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  const chart = useRef<any>(null)
+
+  return <div>
+    <Row align='stretch'>
+      <Col span={6} ref={containerRef}></Col>
+      <Col span={12}></Col>
+    </Row>
+  </div>
+}
+
+const GenderPieChart = () => {
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  const chart = useRef<any>(null)
+
+  return <div>
+    <Row align='stretch'>
+      <Col span={12} ></Col>
+      <Col span={6} ref={containerRef}></Col>
+    </Row>
+  </div>
+}
+
+const NationalPieChart = () => {
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  const chart = useRef<any>(null)
+
+  return <div>
+    <Row align='stretch'>
+      <Col span={6} ref={containerRef}></Col>
+      <Col span={12} ></Col>
+    </Row>
+  </div>
+}
 
 
 const BioCityTalentAnalysisChart = () => {
@@ -70,15 +121,28 @@ const BioCityTalentAnalysisChart = () => {
   }
 
   useEffect(()=>{
-    if (!chart.current) {
-      chart.current = renderBarChart(containerRef.current as unknown as HTMLDivElement);
-    }
+    // if (!chart.current) {
+    //   chart.current = renderBarChart(containerRef.current as unknown as HTMLDivElement);
+    // }
   },[])
 
   return <div>
-    <ContentBoxTitle title='科技型企业引领' subTitle='LEADING BY TECHNOLOGY-BASED ENTERPRISES' />
+    <ContentBoxTitle title='生物城人才分析' subTitle='BIO-CITY TALENT ANALYSIS' />
     <ContentBoxContent>
-      <div ref={containerRef} className={styles.barContainer}></div>
+      <Row className={styles.barContainer} align='stretch'>
+        <Col span={12}>
+          <DegreePieChart />
+        </Col>
+        <Col span={12}>
+          <AgePieChart />
+        </Col>
+        <Col span={12}>
+          <GenderPieChart />
+        </Col>
+        <Col span={12}>
+          <NationalPieChart />
+        </Col>
+      </Row>
     </ContentBoxContent>
   </div>
 }

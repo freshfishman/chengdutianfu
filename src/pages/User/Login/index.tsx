@@ -127,10 +127,10 @@ const Login: React.FC = () => {
         message.success(defaultLoginSuccessMessage);
         await fetchUserInfo();
         const urlParams = new URL(window.location.href).searchParams;
-        if(msg.data.isAdmin) {
+        if (msg.data.isAdmin) {
           history.push(urlParams.get('redirect') || '/');
-        }else{
-          history.push(urlParams.get('redirect') || '/user/login');
+        } else {
+          history.push('/datav/dashboard');
         }
 
         return;

@@ -10,7 +10,6 @@ const useStyles = createStyles(() => ({
   }
 }))
 
-
 const LeadingByTechnologyBasedEnterprises = () => {
 
   const containerRef = useRef<HTMLDivElement>(null)
@@ -24,6 +23,7 @@ const LeadingByTechnologyBasedEnterprises = () => {
       container,
       width:container?.clientWidth,
       height: container?.clientHeight,
+      insetTop:40
     });
 
     // 准备数据
@@ -44,10 +44,31 @@ const LeadingByTechnologyBasedEnterprises = () => {
       .encode('key', 'genre') // 指定 key
       .animate('update', { duration: 300 })// 指定更新动画的时间
       .style('fill', 'linear-gradient(0deg, rgba(91, 214, 255, 0.65) 0%,  rgba(49, 116, 255, 0.65) 100%)') //柱状图背景颜色
-      .style('width', document.documentElement.clientWidth / 100 * 1.25)
-      .axis('y', {
-        labelFormatter: '~s',
-        grid: true,
+      .style('maxWidth', document.documentElement.clientWidth / 100 * 1.25)
+      .style('paddingTop',40)
+      .axis({
+        y:{
+          line:true,
+          lineStroke:'#fff',
+          tickStroke:'#fff',
+          labelStroke:'#fff',
+          labelFill:'#fff',
+          grid:true,
+          gridStroke:'#fff',
+          gridLineWidth:2,
+          gridLineDash:[0,0]
+        },
+        x:{
+          line:true,
+          lineStroke:'#fff',
+          tickStroke:'#fff',
+          labelStroke:'#fff',
+          labelFill:'#fff',
+          grid:true,
+          gridStroke:'#fff',
+          gridLineWidth:2,
+          gridLineDash:[0,0]
+        }
       })
       .label({
         text:'sold',

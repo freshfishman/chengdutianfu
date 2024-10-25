@@ -34,6 +34,12 @@ export default [
     component: './Welcome',
   },
   {
+    path: '/talentappealmanagement',
+    name: 'talentappealmanagement',
+    icon: 'smile',
+    component: './TalentAppealManagement',
+  },
+  {
     path: '/admin',
     name: 'admin',
     icon: 'crown',
