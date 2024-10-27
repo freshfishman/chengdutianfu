@@ -23,7 +23,8 @@ const LeadingByTechnologyBasedEnterprises = () => {
       container,
       width:container?.clientWidth,
       height: container?.clientHeight,
-      insetTop:40
+      insetTop:40,
+      autoFit:true,
     });
 
     // 准备数据
@@ -49,25 +50,27 @@ const LeadingByTechnologyBasedEnterprises = () => {
       .axis({
         y:{
           line:true,
-          lineStroke:'#fff',
-          tickStroke:'#fff',
-          labelStroke:'#fff',
-          labelFill:'#fff',
+          lineStroke:'#244D6E',
+          tickStroke:'#244D6E',
+          labelStroke:'#A3B2CD',
+          labelFill:'#A3B2CD',
           grid:true,
           gridStroke:'#fff',
           gridLineWidth:2,
-          gridLineDash:[0,0]
+          gridLineDash:[0,0],
+          title:''
         },
         x:{
           line:true,
-          lineStroke:'#fff',
-          tickStroke:'#fff',
-          labelStroke:'#fff',
-          labelFill:'#fff',
-          grid:true,
+          lineStroke:'#244D6E',
+          tickStroke:'#244D6E',
+          labelStroke:'#A3B2CD',
+          labelFill:'#A3B2CD',
+          grid:false,
           gridStroke:'#fff',
           gridLineWidth:2,
-          gridLineDash:[0,0]
+          gridLineDash:[0,0],
+          title:''
         }
       })
       .label({
@@ -75,6 +78,7 @@ const LeadingByTechnologyBasedEnterprises = () => {
         fontSize:'0.625vw',
         formatter:(text:string)=>`${text}个`,
         position:'top',
+        labelFill:'#fff',
         labelStroke:'#fff',
         textAlign:'center',
         textBaseline:'top',

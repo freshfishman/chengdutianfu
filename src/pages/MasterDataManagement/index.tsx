@@ -61,7 +61,20 @@ const TalentAppealManagement: React.FC = () => {
     <PageContainer
       extra={[
         <ProFormUploadButton
-          key="upload"
+          key="upload2"
+          fieldProps={{
+            name: 'file',
+            action: '/CommonWebApi/DMP/SubmitEnterpriseInformationListByExcel',
+            headers: {
+              Authorization: localStorage.getItem('token') as unknown as string,
+            },
+            showUploadList:false,
+          }}
+          title="上传企业文件"
+          accept='.xlsx'
+        />,
+        <ProFormUploadButton
+          key="upload1"
           fieldProps={{
             name: 'file',
             action: '/CommonWebApi/DMP/SubmitEnterpriseInformationListByExcel',
@@ -75,12 +88,12 @@ const TalentAppealManagement: React.FC = () => {
         />,
       ]}
     >
-      <ProTable
+      {/* <ProTable
         columns={columns}
         {...tableProps}
         options={false}
         search={false}
-       />
+       /> */}
     </PageContainer>
   );
 };

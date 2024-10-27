@@ -1,14 +1,91 @@
 import { useEffect, useRef } from 'react'
 import { Chart } from '@antv/g2'
 import { createStyles } from 'antd-style'
-import { Col,Row } from 'antd'
+import { Col,Flex,Row } from 'antd'
 import { ContentBoxTitle, ContentBoxContent } from '../ContentBox'
-
-
+import TitleBg from '@/assets/talents-title-bg.png'
+import IconLeftArrow from '@/assets/arrow-down-left.png'
+import IconRightArrow from '@/assets/arrow-down-right.png'
 const useStyles = createStyles(() => ({
   barContainer:{
     height: 'calc(14.58333vw - 2px)',
-  }
+    padding:'1.09375vw 2.65625vw',
+    color:'#fff',
+    fontSize:'0.729167vw'
+  },
+  pieChartMarginContainer:{
+    height:'11.25vw',
+    width:'11.25vw',
+    borderRadius:'50%',
+    background:'rgba(20, 41, 115, 0.3)',
+    padding:'0.83333vw'
+  },
+  pieChartContainer:{
+    borderRadius:'50%',
+    border:'1px solid  #637DA0',
+    padding:'0.83333vw',
+    height:'100%'
+  },
+  labelContainer:{
+    width:'11.5625vw',
+    height: '100%',
+    background:'rgba(20, 41, 115, 0.25)',
+    borderRadius:'0.208333vw',
+    padding:'0.625vw 0.46875vw',
+
+  },
+  labelTitle:{
+    textAlign:'center',
+    height:'2.1875vw',
+    lineHeight:'2.1875vw',
+    backgroundImage: `url(${TitleBg})`,
+    backgroundRepeat:'no-repeat',
+    backgroundSize:'100% 100%',
+    backgroundPosition:'center center',
+    paddingInline:'1.71875vw'
+  },
+  icon:{
+    width:'0.625vw',
+    height: 'fit-content',
+  },
+  labelItem:{
+    paddingInline:'1.5625vw'
+  },
+  blueDot:{
+    width:'0.46875vw',
+    height:'0.46875vw',
+    borderRadius:'50%',
+    background:'rgba(0, 120, 250, 1)',
+    marginInlineEnd:'0.3125vw',
+  },
+  lightGreenDot:{
+    width:'0.46875vw',
+    height:'0.46875vw',
+    borderRadius:'50%',
+    background:'rgba(0, 224, 216, 1)',
+    marginInlineEnd:'0.3125vw',
+  },
+  lightBlueDot :{
+    width:'0.46875vw',
+    height:'0.46875vw',
+    borderRadius:'50%',
+    background:'#168ECE',
+    marginInlineEnd:'0.3125vw',
+  },
+  grayDot :{
+    width:'0.46875vw',
+    height:'0.46875vw',
+    borderRadius:'50%',
+    background:'#9EB7CD',
+    marginInlineEnd:'0.3125vw',
+  },
+  greenDot :{
+    width:'0.46875vw',
+    height:'0.46875vw',
+    borderRadius:'50%',
+    background:'#0CC890',
+    marginInlineEnd:'0.3125vw',
+  },
 }))
 
 
@@ -27,7 +104,7 @@ const DistributionOfTalentsInFiveMajorFildsChart = () => {
       width:container?.clientWidth,
       height: container?.clientHeight,
     });
-    chart.coordinate({ type: 'theta', innerRadius: 0.8 });
+    chart.coordinate({ type: 'theta', innerRadius: 0.8,outerRadius: 1.0 });
 
     chart
     .interval()
@@ -58,17 +135,17 @@ const DistributionOfTalentsInFiveMajorFildsChart = () => {
     .encode('color', 'name')
     .style('stroke', 'white')
     .style('inset', 1)
-    // .style('radius', 10)
+    .style('radius', 5)
     .scale('color', {
       palette: 'spectral',
       offset: (t) => t * 0.8 + 0.1,
     })
-    .label({ text: 'name', fontSize: 10, fontWeight: 'bold' })
-    .label({
-      text: (d, i, data) => (i < data.length - 3 ? d.value : ''),
-      fontSize: 9,
-      dy: 12,
-    })
+    // .label({ text: 'name', fontSize: 10, fontWeight: 'bold' })
+    // .label({
+    //   text: (d, i, data) => (i < data.length - 3 ? d.value : ''),
+    //   fontSize: 9,
+    //   dy: 12,
+    // })
     .animate('enter', { type: 'waveIn' })
     .legend(false)
     .scale('color', {
@@ -93,9 +170,43 @@ const DistributionOfTalentsInFiveMajorFildsChart = () => {
     <ContentBoxContent>
       <Row className={styles.barContainer} align='stretch'>
         <Col span={12}>
-        qqq
+          <Flex className={styles.labelContainer} vertical>
+            <Flex className={styles.labelTitle} align='center' justify='space-between'>
+              <img src={IconLeftArrow} className={styles.icon} />
+              <div >人才分布</div>
+              <img src={IconRightArrow} className={styles.icon} />
+            </Flex>
+            <Flex vertical justify='space-around' flex={1}>
+              <Flex className={styles.labelItem} align='center'>
+                <div className={styles.blueDot}></div>
+                <Flex flex={1}>现代生物技术药</Flex>
+                <div>32%</div>
+              </Flex>
+              <Flex className={styles.labelItem}>
+                <div className={styles.lightGreenDot}></div>
+                <Flex flex={1}>化学创新药</Flex>
+                <div>32%</div>
+              </Flex>
+              <Flex className={styles.labelItem}>
+                <div className={styles.lightBlueDot}></div>
+                <Flex flex={1}>高性能医疗器械</Flex>
+                <div>32%</div>
+              </Flex>
+              <Flex className={styles.labelItem}>
+                <div className={styles.grayDot}></div>
+                <Flex flex={1}>专业外包服务</Flex>
+                <div>32%</div>
+              </Flex>
+              <Flex className={styles.labelItem}>
+                <div className={styles.greenDot}></div>
+                <Flex flex={1}>健康服务</Flex>
+                <div>32%</div>
+              </Flex>
+            </Flex>
+          </Flex>
         </Col>
-        <Col span={12} ref={containerRef}></Col>
+        <Col span={12} ref={containerRef}>
+        </Col>
       </Row>
     </ContentBoxContent>
   </div>

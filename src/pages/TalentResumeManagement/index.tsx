@@ -70,7 +70,7 @@ const TalentResumeManagement: React.FC = () => {
             },
             showUploadList:false,
           }}
-          title="上传企业文件"
+          title="上传人才简历文件"
           accept='.xlsx'
         />,
       ]}

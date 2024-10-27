@@ -40,6 +40,18 @@ export default [
     component: './TalentAppealManagement',
   },
   {
+    path: '/talentresumemanagement',
+    name: 'talentresumemanagement',
+    icon: 'smile',
+    component: './TalentResumeManagement',
+  },
+  {
+    path: '/masterdata',
+    name: 'masterdata',
+    icon: 'smile',
+    component: './MasterDataManagement',
+  },
+  {
     path: '/admin',
     name: 'admin',
     icon: 'crown',

@@ -87,7 +87,7 @@ const TalentAppealManagement: React.FC = () => {
             },
             showUploadList:false,
           }}
-          title="上传企业文件"
+          title="上传人才诉求文件"
           accept='.xlsx'
         />,
       ]}
@@ -98,6 +98,7 @@ const TalentAppealManagement: React.FC = () => {
         options={false}
         search={false}
         pagination={false}
+
        />
     </PageContainer>
   );

@@ -12,7 +12,7 @@ const Settings: ProLayoutProps & {
   colorPrimary: '#1890ff',
   layout: 'mix',
   contentWidth: 'Fluid',
-  fixedHeader: false,
+  fixedHeader: true,
   fixSiderbar: true,
   colorWeak: false,
   title: '成都天府国际生物城产业数字分析服务平台',
