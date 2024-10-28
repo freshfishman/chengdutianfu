@@ -6,6 +6,10 @@ import { ContentBoxTitle, ContentBoxContent } from '../ContentBox'
 import TitleBg from '@/assets/talents-title-bg.png'
 import IconLeftArrow from '@/assets/arrow-down-left.png'
 import IconRightArrow from '@/assets/arrow-down-right.png'
+import { useModel } from '@umijs/max'
+import { getPercent } from '@/utils'
+
+
 const useStyles = createStyles(() => ({
   barContainer:{
     height: 'calc(14.58333vw - 2px)',
@@ -49,7 +53,7 @@ const useStyles = createStyles(() => ({
     height: 'fit-content',
   },
   labelItem:{
-    paddingInline:'1.5625vw'
+    paddingInline:'1vw'
   },
   blueDot:{
     width:'0.46875vw',
@@ -91,6 +95,8 @@ const useStyles = createStyles(() => ({
 
 const DistributionOfTalentsInFiveMajorFildsChart = () => {
 
+  const { talentInformationData } = useModel('Dashboard.model')
+
   const containerRef = useRef<HTMLDivElement>(null)
 
   const chart = useRef<any>(null)
@@ -98,7 +104,6 @@ const DistributionOfTalentsInFiveMajorFildsChart = () => {
   const { styles } = useStyles()
 
   const renderBarChart = (container:HTMLDivElement) => {
-    console.log(container,container.clientHeight,container.clientWidth,'=================>')
     const chart = new Chart({
       container,
       width:container?.clientWidth,
@@ -131,8 +136,8 @@ const DistributionOfTalentsInFiveMajorFildsChart = () => {
         "value": 22604232
       },
     ])
-    .encode('y', 'value')
-    .encode('color', 'name')
+    .encode('y', 'Item2')
+    .encode('color', 'Item1')
     .style('stroke', 'white')
     .style('inset', 1)
     .style('radius', 5)
@@ -162,8 +167,12 @@ const DistributionOfTalentsInFiveMajorFildsChart = () => {
   useEffect(()=>{
     if (!chart.current) {
       chart.current = renderBarChart(containerRef.current as unknown as HTMLDivElement);
+    } else {
+      if(talentInformationData?.TER_LIST) {
+        chart.current.changeData(talentInformationData?.TER_LIST)
+      }
     }
-  },[])
+  },[talentInformationData])
 
   return <div>
     <ContentBoxTitle title='五大领域人才分布' subTitle='DISTRIBUTION OF TALENTS IN FIVE MAJOR FILDS' />
@@ -180,27 +189,27 @@ const DistributionOfTalentsInFiveMajorFildsChart = () => {
               <Flex className={styles.labelItem} align='center'>
                 <div className={styles.blueDot}></div>
                 <Flex flex={1}>现代生物技术药</Flex>
-                <div>32%</div>
+                <div>{talentInformationData?.TER_LIST ? getPercent(talentInformationData?.TER_LIST[0].Item2 , talentInformationData?.TER_LIST.map(item=>item.Item2).reduce((a,b)=>a+b,0)) : 0}</div>
               </Flex>
               <Flex className={styles.labelItem}>
                 <div className={styles.lightGreenDot}></div>
                 <Flex flex={1}>化学创新药</Flex>
-                <div>32%</div>
+                <div>{talentInformationData?.TER_LIST ? getPercent(talentInformationData?.TER_LIST[1].Item2 , talentInformationData?.TER_LIST.map(item=>item.Item2).reduce((a,b)=>a+b,0)) : 0}</div>
               </Flex>
               <Flex className={styles.labelItem}>
                 <div className={styles.lightBlueDot}></div>
                 <Flex flex={1}>高性能医疗器械</Flex>
-                <div>32%</div>
+                <div>{talentInformationData?.TER_LIST ? getPercent(talentInformationData?.TER_LIST[2].Item2 , talentInformationData?.TER_LIST.map(item=>item.Item2).reduce((a,b)=>a+b,0)) : 0}</div>
               </Flex>
               <Flex className={styles.labelItem}>
                 <div className={styles.grayDot}></div>
                 <Flex flex={1}>专业外包服务</Flex>
-                <div>32%</div>
+                <div>{talentInformationData?.TER_LIST ? getPercent(talentInformationData?.TER_LIST[3].Item2 , talentInformationData?.TER_LIST.map(item=>item.Item2).reduce((a,b)=>a+b,0)) : 0}</div>
               </Flex>
               <Flex className={styles.labelItem}>
                 <div className={styles.greenDot}></div>
                 <Flex flex={1}>健康服务</Flex>
-                <div>32%</div>
+                <div>{talentInformationData?.TER_LIST ? getPercent(talentInformationData?.TER_LIST[4].Item2 , talentInformationData?.TER_LIST.map(item=>item.Item2).reduce((a,b)=>a+b,0)) : 0}</div>
               </Flex>
             </Flex>
           </Flex>

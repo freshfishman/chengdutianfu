@@ -2,6 +2,7 @@ import { Flex } from 'antd'
 import { createStyles } from 'antd-style'
 import { ContentBoxTitle, ContentBoxContent } from '../ContentBox'
 import GatheringOfHighLevelTalentsChartBarBg from '@/assets/box-content-bar-bg.png'
+import { useModel } from '@umijs/max'
 
 const useStyles = createStyles(() => ({
   barContainer:{
@@ -36,6 +37,8 @@ const useStyles = createStyles(() => ({
 
 const GatheringOfHighLevelTalentsChart = () => {
 
+  const { talentInformationData } = useModel('Dashboard.model')
+
   const { styles } = useStyles()
 
   return <div>
@@ -44,21 +47,21 @@ const GatheringOfHighLevelTalentsChart = () => {
       <Flex justify='space-around' className={styles.barContainer}>
         <Flex className={styles.barItem} vertical justify='space-between' align='center'>
           <Flex align='center'>
-            <div className={styles.barNumber}>4</div>
+            <div className={styles.barNumber}>{talentInformationData?.TR_NATIONAL_ACADEMICIAN_TEAM || 0}</div>
             <div className={styles.barUnit}>个</div>
           </Flex>
           <div className={styles.labelTitle} style={{paddingBottom:'0.52083vw'}}>国家级院士团队</div>
         </Flex>
         <Flex className={styles.barItem} vertical justify='space-between' align='center'>
           <Flex align='center'>
-            <div className={styles.barNumber}>5</div>
+            <div className={styles.barNumber}>{talentInformationData?.TR_NOBEL_TALENT_TEAM || 0}</div>
             <div className={styles.barUnit}>个</div>
           </Flex>
           <div className={styles.labelTitle} style={{paddingBottom:'0.52083vw'}}>诺贝尔奖人才团队</div>
         </Flex>
         <Flex className={styles.barItem} vertical justify='space-between' align='center'>
           <Flex align='center'>
-            <div className={styles.barNumber}>51</div>
+            <div className={styles.barNumber}>{talentInformationData?.TR_OVERSEAS_RETURNED_HIGH_LEVEL_TALENT_TEAM || 0}</div>
             <div className={styles.barUnit}>个</div>
           </Flex>
           <div className={styles.labelTitle}>海外归国高层次人才团队</div>

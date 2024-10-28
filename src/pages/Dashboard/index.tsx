@@ -1,9 +1,10 @@
-import { } from '@umijs/max'
+import { useModel } from '@umijs/max'
 import { createStyles } from 'antd-style'
 import { Col, Row } from 'antd'
 import { TopHeader,GatheringOfHighLevelTalentsChart,LeadingByTechnologyBasedEnterprises,DistributionOfTalentsInFiveMajorFildsChart,EnterprisesInfo,HeatMap,AnnualNumberOfNewPatentAuthorizationsCharts,EmpoweringHighLevelTalents, BioCityTalentAnalysisChart } from './components'
 
 import DashBoardBg from '@/assets/dashboard-bg.png'
+import { useEffect } from 'react'
 
 
 const useStyles = createStyles(() => ({
@@ -22,7 +23,21 @@ const useStyles = createStyles(() => ({
 }))
 const Dashboard = () => {
 
+  const { getEnterpriseInformationData,getTalentInformationData,enterpriseInformationData,talentInformationData,tabIndex,setTabIndex } = useModel('Dashboard.model')
+
   const { styles} = useStyles()
+
+  const getData = async () => {
+    await Promise.all([getTalentInformationData(),getEnterpriseInformationData()])
+  }
+
+  useEffect(()=>{
+    console.log(talentInformationData,enterpriseInformationData)
+  },[enterpriseInformationData,talentInformationData])
+
+  useEffect(()=>{
+    getData()
+  },[])
 
   return <div className={styles.dashboard}>
     {/* 头信息 */}

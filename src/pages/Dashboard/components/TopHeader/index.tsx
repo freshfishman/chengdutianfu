@@ -1,4 +1,4 @@
-import { } from '@umijs/max'
+import { useModel } from '@umijs/max'
 import { createStyles } from 'antd-style'
 import { Col, Flex, Row } from 'antd'
 import moment from 'moment';
@@ -8,6 +8,16 @@ import DashBoardBg from '@/assets/top-header-bg.png'
 import Logo from '@/assets/logo.png';
 import LocationPng from '@/assets/location.png'
 import TitleBg from '@/assets/top-header-title-bg.png'
+
+const weekMap = {
+  1: '一',
+  2: '二',
+  3: '三',
+  4: '四',
+  5: '五',
+  6: '六',
+  0: '日'
+}
 
 
 const useStyles = createStyles(() => ({
@@ -75,27 +85,36 @@ const useStyles = createStyles(() => ({
 }))
 const TopHeader = () => {
 
+  const { talentInformationData,tabIndex,setTabIndex } = useModel('Dashboard.model')
+
   const { styles } = useStyles()
+
+  const handleTabIndexChange = (index: number) => {
+    if(index === tabIndex) {
+      return
+    }
+    setTabIndex(index)
+  }
 
   return <div className={styles.dashboard}>
     <Row>
       <Col span={6}>
         <Flex vertical className={styles.titleHeight}>
           <Flex>
-            <div className={styles.tabItem}>
+            <div className={[styles.tabItem,tabIndex === 0 ? styles.tabItemActive : ''].join(' ')} onClick={() => handleTabIndexChange(0)}>
               <span>区域产业人才分析</span>
             </div>
-            <div className={[styles.tabItem, styles.tabItemMargin].join(' ')}>
+            <div className={[styles.tabItem, styles.tabItemMargin,tabIndex === 1 ? styles.tabItemActive : ''].join(' ')} onClick={() => handleTabIndexChange(1)}>
               <span>产业人才全景分析</span>
             </div>
-            <div className={styles.tabItem}>
+            <div className={[styles.tabItem,tabIndex === 2 ? styles.tabItemActive : ''].join(' ')}>
               <span>区域产业链分析</span>
             </div>
           </Flex>
           <Flex className={styles.datetime} justify='center'>
             <Flex className={styles.datatimeBox} justify='space-between'>
               <div>{moment().format('YYYY年MM月DD日')}</div>
-              <div>{'星期四'}</div>
+              <div>星期{weekMap[new Date().getDay()]}</div>
             </Flex>
           </Flex>
         </Flex>
@@ -110,17 +129,17 @@ const TopHeader = () => {
       <Col span={6}>
         <Flex vertical className={styles.titleHeight}>
           <Flex justify='flex-end'>
-            <div className={styles.tabItem}>
+            <div className={[styles.tabItem,tabIndex === 3 ? styles.tabItemActive : ''].join(' ')}>
               <span>产业链强链补链</span>
             </div>
-            <div className={[styles.tabItem, styles.tabItemMargin].join(' ')}>
+            <div className={[styles.tabItem, styles.tabItemMargin,tabIndex === 4 ? styles.tabItemActive : ''].join(' ')}>
               <span>产业协同地图</span>
             </div>
             <div className={[styles.tabItem, styles.noBorder].join(' ')}></div>
           </Flex>
           <Flex className={styles.datetime} justify='center'>
             <Flex className={styles.datatimeBox} justify='space-between'>
-              数据截止时间：2024年10月
+              数据截止时间：{talentInformationData?.deadline ? moment(talentInformationData?.deadline).format('YYYY年MM月') : ''}
             </Flex>
           </Flex>
         </Flex>

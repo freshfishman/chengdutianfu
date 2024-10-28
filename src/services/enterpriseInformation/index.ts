@@ -81,3 +81,24 @@ export const getTalentAppealManagementList = async (options?: { [key: string]: a
     PROBLEM_TOTAL:res.data.PROBLEM_TOTAL
   }
 }
+
+
+//获取图表人才信息部分数据
+export async function getTalentInformation(params?: any) {
+  return request<{
+    data:ENTERPRISEINFORMATION.TALENTINFORMATIONSTATEMENT
+  }>('/CommonWebApi/DMP/GetTalentInformationStatement', {
+    method: 'POST',
+    data: params,
+  });
+}
+
+//获取图表企业部分数据
+export async function getEnterpriseInformation(params?: any) {
+  return request<{
+    data:ENTERPRISEINFORMATION.ENTERPRISEINFORMATIONSTATEMENT
+  }>('/CommonWebApi/DMP/GetEnterpriseInformationStatement', {
+    method: 'POST',
+    data: params,
+  });
+}

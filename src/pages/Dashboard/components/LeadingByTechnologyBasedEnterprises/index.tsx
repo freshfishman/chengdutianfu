@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { Chart } from '@antv/g2'
 import { createStyles } from 'antd-style'
 import { ContentBoxTitle, ContentBoxContent } from '../ContentBox'
+import { useModel } from '@umijs/max'
 
 
 const useStyles = createStyles(() => ({
@@ -11,6 +12,8 @@ const useStyles = createStyles(() => ({
 }))
 
 const LeadingByTechnologyBasedEnterprises = () => {
+
+  const { enterpriseInformationData } = useModel('Dashboard.model')
 
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -40,8 +43,8 @@ const LeadingByTechnologyBasedEnterprises = () => {
     chart
       .interval() // 创建一个 Interval 标记
       .data(data) // 绑定数据
-      .encode('x', 'genre') // 编码 x 通道
-      .encode('y', 'sold') // 编码 y 通道
+      .encode('x', 'Item1') // 编码 x 通道
+      .encode('y', 'Item2') // 编码 y 通道
       .encode('key', 'genre') // 指定 key
       .animate('update', { duration: 300 })// 指定更新动画的时间
       .style('fill', 'linear-gradient(0deg, rgba(91, 214, 255, 0.65) 0%,  rgba(49, 116, 255, 0.65) 100%)') //柱状图背景颜色
@@ -74,7 +77,10 @@ const LeadingByTechnologyBasedEnterprises = () => {
         }
       })
       .label({
-        text:'sold',
+        text:(d, i, data, { channel }) => {
+          console.log(d,i,data,channel)
+          return channel.y[i]
+        }, // 聚合图形的数据标签,
         fontSize:'0.625vw',
         formatter:(text:string)=>`${text}个`,
         position:'top',
@@ -97,8 +103,12 @@ const LeadingByTechnologyBasedEnterprises = () => {
   useEffect(()=>{
     if (!chart.current) {
       chart.current = renderBarChart(containerRef.current as unknown as HTMLDivElement);
+    }else {
+      if(enterpriseInformationData?.ETYPE_LIST) {
+        chart.current.changeData(enterpriseInformationData?.ETYPE_LIST)
+      }
     }
-  },[])
+  },[enterpriseInformationData])
 
   return <div>
     <ContentBoxTitle title='科技型企业引领' subTitle='LEADING BY TECHNOLOGY-BASED ENTERPRISES' />

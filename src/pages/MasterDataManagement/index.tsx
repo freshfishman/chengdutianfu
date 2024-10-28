@@ -64,26 +64,26 @@ const TalentAppealManagement: React.FC = () => {
           key="upload2"
           fieldProps={{
             name: 'file',
-            action: '/CommonWebApi/DMP/SubmitEnterpriseInformationListByExcel',
+            action: '/CommonWebApi/DMP/SubmitTalentInformationStatementByExcel',
             headers: {
               Authorization: localStorage.getItem('token') as unknown as string,
             },
             showUploadList:false,
           }}
-          title="上传企业文件"
+          title="上传人才报表文件"
           accept='.xlsx'
         />,
         <ProFormUploadButton
           key="upload1"
           fieldProps={{
             name: 'file',
-            action: '/CommonWebApi/DMP/SubmitEnterpriseInformationListByExcel',
+            action: '/CommonWebApi/DMP/SubmitEnterpriseInformationStatementByExcel',
             headers: {
               Authorization: localStorage.getItem('token') as unknown as string,
             },
             showUploadList:false,
           }}
-          title="上传企业文件"
+          title="上传企业报表文件"
           accept='.xlsx'
         />,
       ]}

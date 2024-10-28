@@ -1,5 +1,5 @@
 import {  } from 'react'
-import {  } from '@umijs/max'
+import { useModel } from '@umijs/max'
 import { Flex } from 'antd'
 import { createStyles } from 'antd-style'
 import { ContentBoxTitle , ContentBoxContent } from '../ContentBox'
@@ -55,6 +55,8 @@ const useStyles = createStyles(() => ({
 
 const EmpoweringHighLevelTalents = () => {
 
+  const { talentInformationData }  = useModel('Dashboard.model')
+
   const { styles } = useStyles();
 
   return (
@@ -67,7 +69,7 @@ const EmpoweringHighLevelTalents = () => {
               <img className={styles.listItemBg} src={NationalBg} />
               <div className={styles.listItemContainer}>
                 <Flex align='end' className={styles.listItemTitle}>
-                  <div className={styles.listItemTitleNumber}>20+</div>
+                  <div className={styles.listItemTitleNumber}>{ talentInformationData?.TR_NATIONAL_TALENT || 0}</div>
                   <div className={styles.listItemTitleUnit}>个</div>
                 </Flex>
                 <div className={styles.listItemDesc}>国家级人才</div>
@@ -77,7 +79,7 @@ const EmpoweringHighLevelTalents = () => {
               <img className={styles.listItemBg} src={MunicipalBg} />
               <div className={styles.listItemContainer}>
                 <Flex align='end' className={styles.listItemTitle}>
-                  <div className={styles.listItemTitleNumber}>60+</div>
+                  <div className={styles.listItemTitleNumber}>{talentInformationData?.TR_MUNICIPAL_TALENTS || 0}</div>
                   <div className={styles.listItemTitleUnit}>个</div>
                 </Flex>
                 <div className={styles.listItemDesc}>市级人才</div>
@@ -87,7 +89,7 @@ const EmpoweringHighLevelTalents = () => {
               <img className={styles.listItemBg} src={SeniorBg} />
               <div className={styles.listItemContainer}>
                 <Flex align='end' className={styles.listItemTitle}>
-                  <div className={styles.listItemTitleNumber}>20+</div>
+                  <div className={styles.listItemTitleNumber}>{talentInformationData?.TR_PROFESSIONAL_AND_TECHNICAL_SENIOR_PERSONNEL || 0}</div>
                   <div className={styles.listItemTitleUnit}>个</div>
                 </Flex>
                 <div className={styles.listItemDesc}>专业技术高级人才</div>
@@ -97,7 +99,7 @@ const EmpoweringHighLevelTalents = () => {
               <img className={styles.listItemBg} src={JuniorBg} />
               <div className={styles.listItemContainer}>
                 <Flex align='end' className={styles.listItemTitle}>
-                  <div className={styles.listItemTitleNumber}>1800+</div>
+                  <div className={styles.listItemTitleNumber}>{talentInformationData?.TR_PROFESSIONAL_AND_TECHNICAL_JUNIOR_PERSONNEL || 0}</div>
                   <div className={styles.listItemTitleUnit}>个</div>
                 </Flex>
                 <div className={styles.listItemDesc}>专业技术初级人才</div>
@@ -109,7 +111,7 @@ const EmpoweringHighLevelTalents = () => {
               <img className={styles.listItemBg} src={ProvincialBg} />
               <div className={styles.listItemContainer}>
                 <Flex align='end' className={styles.listItemTitle}>
-                  <div className={styles.listItemTitleNumber}>30+</div>
+                  <div className={styles.listItemTitleNumber}>{talentInformationData?.TR_PROVINCIAL_TALENTS || 0}</div>
                   <div className={styles.listItemTitleUnit}>个</div>
                 </Flex>
                 <div className={styles.listItemDesc}>省级人才</div>
@@ -119,7 +121,7 @@ const EmpoweringHighLevelTalents = () => {
               <img className={styles.listItemBg} src={LeadingTalentBg} />
               <div className={styles.listItemContainer}>
                 <Flex align='end' className={styles.listItemTitle}>
-                  <div className={styles.listItemTitleNumber}>20+</div>
+                  <div className={styles.listItemTitleNumber}>{talentInformationData?.TR_INDUSTRY_LEADER || 0}</div>
                   <div className={styles.listItemTitleUnit}>个</div>
                 </Flex>
                 <div className={styles.listItemDesc}>产业领军人才</div>
@@ -129,7 +131,7 @@ const EmpoweringHighLevelTalents = () => {
               <img className={styles.listItemBg} src={IntermediateBg} />
               <div className={styles.listItemContainer}>
                 <Flex align='end' className={styles.listItemTitle}>
-                  <div className={styles.listItemTitleNumber}>1300+</div>
+                  <div className={styles.listItemTitleNumber}>{talentInformationData?.TR_INTERMEDIATE_PROFESSIONAL_AND_TECHNICAL_PERSONNEL || 0}</div>
                   <div className={styles.listItemTitleUnit}>个</div>
                 </Flex>
                 <div className={styles.listItemDesc}>专业技术中级人才</div>
@@ -139,7 +141,7 @@ const EmpoweringHighLevelTalents = () => {
               <img className={styles.listItemBg} src={OverseaTalentsBg} />
               <div className={styles.listItemContainer}>
                 <Flex align='end' className={styles.listItemTitle}>
-                  <div className={styles.listItemTitleNumber}>1200+</div>
+                  <div className={styles.listItemTitleNumber}>{talentInformationData?.TR_OVERSEAS_HIGH_LEVEL_TALENTS || 0}</div>
                   <div className={styles.listItemTitleUnit}>个</div>
                 </Flex>
                 <div className={styles.listItemDesc}>海外高层次人才</div>

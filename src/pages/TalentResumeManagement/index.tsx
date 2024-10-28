@@ -8,7 +8,7 @@ const TalentResumeManagement: React.FC = () => {
     getTalentResumeManagementList,
     {
       manual: true,
-      defaultPageSize:10
+      defaultPageSize:100
     },
   );
 
@@ -19,36 +19,31 @@ const TalentResumeManagement: React.FC = () => {
       width:80
     },
     {
-      title: '企业名称',
-      dataIndex: 'EI_ENTERPRISE_NAME',
+      title: '姓名',
+      dataIndex: 'TP_NAME',
       ellipsis:true
     },
     {
-      title: '统一社会信用代码',
-      dataIndex: 'EI_UNIFY_THE_SOCIAL_CREDIT_CODE',
+      title: '专业',
+      dataIndex: 'TP_SPECIALTY',
       ellipsis:true
     },
     {
-      title: '法人代表',
-      dataIndex: 'EI_LEGAL_PERSON',
+      title: '学历',
+      dataIndex: 'TP_EDUCATION_BACKGROUND',
       ellipsis:true,
       width:120
     },
     {
-      title: '网址',
-      dataIndex: 'EI_OFFICIAL_WEBSITE',
+      title: '工作年限',
+      dataIndex: 'TP_WORKING_YEARS',
       ellipsis:true
     },
     {
-      title: '邮箱',
-      dataIndex: 'EI_EMAIL',
+      title: '毕业院校',
+      dataIndex: 'TP_GRADUATE_INSTITUTIONS',
       ellipsis:true
     },
-    {
-      title: '地址',
-      dataIndex: 'EI_BUSINESS_REGISTERED_ADDRESS',
-      ellipsis:true
-    }
   ]
 
   const { submit } = search
@@ -80,6 +75,7 @@ const TalentResumeManagement: React.FC = () => {
         {...tableProps}
         options={false}
         search={false}
+        pagination={false}
        />
     </PageContainer>
   );

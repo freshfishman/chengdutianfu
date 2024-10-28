@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react'
-import {  } from '@umijs/max'
+import { useModel } from '@umijs/max'
 import {  } from 'antd'
 import { createStyles } from 'antd-style'
 import { Chart } from '@antv/g2'
@@ -12,6 +12,9 @@ const useStyles = createStyles(() => ({
 }))
 
 const AnnualNumberOfNewPatentAuthorizationsCharts = () => {
+
+
+  const { talentInformationData } = useModel('Dashboard.model')
 
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -77,16 +80,37 @@ const AnnualNumberOfNewPatentAuthorizationsCharts = () => {
         }
       })
     // 渲染可视化
+
+    chart.point().encode('x', (d) => new Date(d.date)).encode('y', 'price');
+
     chart.render();
 
     return chart;
   }
 
   useEffect(()=>{
+    console.log(talentInformationData,'=======>')
     if (!chart.current) {
       chart.current = renderBarChart(containerRef.current as unknown as HTMLDivElement);
+    }else {
+      if(talentInformationData?.TALENTS_GROWTH_TREND) {
+        const data : {
+          date:string,
+          price:number
+        }[] = []
+        const keys = Object.keys(talentInformationData?.TALENTS_GROWTH_TREND)
+        // chart.current.changeData(talentInformationData?.)
+        keys.forEach(item=>{
+          data.push({
+            date:item,
+            price:talentInformationData?.TALENTS_GROWTH_TREND[item]
+          })
+        })
+        chart.current.changeData(data)
+      }
+
     }
-  },[])
+  },[talentInformationData])
 
   return (
     <div>

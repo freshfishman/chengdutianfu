@@ -3,6 +3,9 @@ import { Chart } from '@antv/g2'
 import { createStyles } from 'antd-style'
 import { ContentBoxTitle, ContentBoxContent } from '../ContentBox'
 import { Col, Flex, Row } from 'antd'
+import { useModel } from '@umijs/max'
+import { getPercent } from '@/utils'
+
 
 const useStyles = createStyles(() => ({
   barContainer:{
@@ -109,6 +112,8 @@ const useStyles = createStyles(() => ({
 
 const DegreePieChart = () => {
 
+  const { talentInformationData } = useModel('Dashboard.model')
+
   const { styles } = useStyles()
 
   const containerRef = useRef<HTMLDivElement>(null)
@@ -149,8 +154,8 @@ const DegreePieChart = () => {
         "value": 22604232
       },
     ])
-    .encode('y', 'value')
-    .encode('color', 'name')
+    .encode('y', 'Item2')
+    .encode('color', 'Item1')
     .style('inset', 1)
     .scale('color', {
       palette: 'spectral',
@@ -178,8 +183,12 @@ const DegreePieChart = () => {
   useEffect(()=>{
     if (!chart.current) {
       chart.current = renderBarChart(containerRef.current as unknown as HTMLDivElement);
+    }else{
+      if(talentInformationData?.EB_LIST) {
+        chart.current.changeData(talentInformationData?.EB_LIST)
+      }
     }
-  },[])
+  },[talentInformationData])
 
   return <div className={styles.pieContainerItem}>
     <Row align='stretch' className={styles.pieContainerItem}>
@@ -187,35 +196,35 @@ const DegreePieChart = () => {
 
         <Flex vertical flex={1}>
           <Flex className={styles.labelItem} align='center'>
-            <div className={styles.labelItemTitleNumber}>24.47%</div>
+            <div className={styles.labelItemTitleNumber}>{talentInformationData?.EB_LIST ? getPercent(talentInformationData?.EB_LIST[0].Item2 , talentInformationData?.EB_LIST.map(item=>item.Item2).reduce((a,b)=>a+b,0)) : 0}</div>
             <Flex className={styles.labelItemTitle} flex={1} justify='flex-end'>
               <div>研究生/博士</div>
             </Flex>
             <div className={styles.dot1}></div>
           </Flex>
           <Flex className={styles.labelItem} align='center'>
-            <div className={styles.labelItemTitleNumber}>50.3%</div>
+            <div className={styles.labelItemTitleNumber}>{talentInformationData?.EB_LIST ? getPercent(talentInformationData?.EB_LIST[1].Item2 , talentInformationData?.EB_LIST.map(item=>item.Item2).reduce((a,b)=>a+b,0)) : 0}</div>
             <Flex className={styles.labelItemTitle} flex={1} justify='flex-end'>
               <div>研究生/硕士</div>
             </Flex>
             <div className={styles.dot2}></div>
           </Flex>
           <Flex className={styles.labelItem} align='center'>
-            <div className={styles.labelItemTitleNumber}>19.75%</div>
+            <div className={styles.labelItemTitleNumber}>{talentInformationData?.EB_LIST ? getPercent(talentInformationData?.EB_LIST[2].Item2 , talentInformationData?.EB_LIST.map(item=>item.Item2).reduce((a,b)=>a+b,0)) : 0}</div>
             <Flex className={styles.labelItemTitle} flex={1} justify='flex-end'>
               <div>本科/学士</div>
             </Flex>
             <div className={styles.dot3}></div>
           </Flex>
           <Flex className={styles.labelItem} align='center'>
-            <div className={styles.labelItemTitleNumber}>3.27%</div>
+            <div className={styles.labelItemTitleNumber}>{talentInformationData?.EB_LIST ? getPercent(talentInformationData?.EB_LIST[3].Item2 , talentInformationData?.EB_LIST.map(item=>item.Item2).reduce((a,b)=>a+b,0)) : 0}</div>
             <Flex className={styles.labelItemTitle} flex={1} justify='flex-end'>
               <div>大专及以下</div>
             </Flex>
             <div className={styles.dot4}></div>
           </Flex>
           <Flex className={styles.labelItem} align='center'>
-            <div className={styles.labelItemTitleNumber}>2.2%</div>
+            <div className={styles.labelItemTitleNumber}>{talentInformationData?.EB_LIST ? getPercent(talentInformationData?.EB_LIST[4].Item2 , talentInformationData?.EB_LIST.map(item=>item.Item2).reduce((a,b)=>a+b,0)) : 0}</div>
             <Flex className={styles.labelItemTitle} flex={1} justify='flex-end'>
               <div>其他</div>
             </Flex>
@@ -232,6 +241,8 @@ const DegreePieChart = () => {
 
 const AgePieChart = () => {
 
+  const { talentInformationData } = useModel('Dashboard.model')
+
   const { styles } = useStyles()
 
   const containerRef = useRef<HTMLDivElement>(null)
@@ -239,7 +250,6 @@ const AgePieChart = () => {
   const chart = useRef<any>(null)
 
   const renderBarChart = (container:HTMLDivElement) => {
-    console.log(container,container.clientHeight,container.clientWidth,'=================>')
     const chart = new Chart({
       container,
       width:container?.clientWidth,
@@ -268,8 +278,8 @@ const AgePieChart = () => {
         "value": 21354481
       },
     ])
-    .encode('y', 'value')
-    .encode('color', 'name')
+    .encode('y', 'Item2')
+    .encode('color', 'Item1')
     .style('inset', 1)
     .scale('color', {
       palette: 'spectral',
@@ -297,8 +307,12 @@ const AgePieChart = () => {
   useEffect(()=>{
     if (!chart.current) {
       chart.current = renderBarChart(containerRef.current as unknown as HTMLDivElement);
+    }else {
+      if(talentInformationData?.AGE_LIST) {
+        chart.current.changeData(talentInformationData?.AGE_LIST)
+      }
     }
-  },[])
+  },[talentInformationData])
 
   return <div className={styles.pieContainerItem}>
     <Row align='stretch' className={styles.pieContainerItem}>
@@ -312,28 +326,28 @@ const AgePieChart = () => {
             <Flex className={styles.labelItemTitle} flex={1} justify='flex-end'>
               <div>30岁及以下</div>
             </Flex>
-            <div className={styles.labelItemTitleNumber}>24.47%</div>
+            <div className={styles.labelItemTitleNumber}>{talentInformationData?.AGE_LIST ? getPercent(talentInformationData?.AGE_LIST[0].Item2 , talentInformationData?.AGE_LIST.map(item=>item.Item2).reduce((a,b)=>a+b,0)) : 0}</div>
           </Flex>
           <Flex className={styles.labelItem} align='center'>
             <div className={styles.dot7}></div>
             <Flex className={styles.labelItemTitle} flex={1} justify='flex-end'>
               <div>30-40岁</div>
             </Flex>
-            <div className={styles.labelItemTitleNumber}>50.3%</div>
+            <div className={styles.labelItemTitleNumber}>{talentInformationData?.AGE_LIST ? getPercent(talentInformationData?.AGE_LIST[1].Item2 , talentInformationData?.AGE_LIST.map(item=>item.Item2).reduce((a,b)=>a+b,0)) : 0}</div>
           </Flex>
           <Flex className={styles.labelItem} align='center'>
             <div className={styles.dot8}></div>
             <Flex className={styles.labelItemTitle} flex={1} justify='flex-end'>
               <div>40-50岁</div>
             </Flex>
-            <div className={styles.labelItemTitleNumber}>19.75%</div>
+            <div className={styles.labelItemTitleNumber}>{talentInformationData?.AGE_LIST ? getPercent(talentInformationData?.AGE_LIST[2].Item2 , talentInformationData?.AGE_LIST.map(item=>item.Item2).reduce((a,b)=>a+b,0)) : 0}</div>
           </Flex>
           <Flex className={styles.labelItem} align='center'>
             <div className={styles.dot9}></div>
             <Flex className={styles.labelItemTitle} flex={1} justify='flex-end'>
               <div>51岁及以下</div>
             </Flex>
-            <div className={styles.labelItemTitleNumber}>3.27%</div>
+            <div className={styles.labelItemTitleNumber}>{talentInformationData?.AGE_LIST ? getPercent(talentInformationData?.AGE_LIST[3].Item2 , talentInformationData?.AGE_LIST.map(item=>item.Item2).reduce((a,b)=>a+b,0)) : 0}</div>
           </Flex>
         </Flex>
       </Col>
@@ -343,6 +357,8 @@ const AgePieChart = () => {
 
 const GenderPieChart = () => {
 
+  const { talentInformationData } = useModel('Dashboard.model')
+
   const { styles } = useStyles()
 
   const containerRef = useRef<HTMLDivElement>(null)
@@ -350,7 +366,6 @@ const GenderPieChart = () => {
   const chart = useRef<any>(null)
 
   const renderBarChart = (container:HTMLDivElement) => {
-    console.log(container,container.clientHeight,container.clientWidth,'=================>')
     const chart = new Chart({
       container,
       width:container?.clientWidth,
@@ -371,8 +386,8 @@ const GenderPieChart = () => {
         "value": 20501982
       },
     ])
-    .encode('y', 'value')
-    .encode('color', 'name')
+    .encode('y', 'Item2')
+    .encode('color', 'Item1')
     // .style('stroke', 'white')
     .style('inset', 1)
     // .style('radius', 5)
@@ -402,22 +417,26 @@ const GenderPieChart = () => {
   useEffect(()=>{
     if (!chart.current) {
       chart.current = renderBarChart(containerRef.current as unknown as HTMLDivElement);
+    }else{
+      if(talentInformationData?.SEX_LIST) {
+        chart.current.changeData(talentInformationData?.SEX_LIST)
+      }
     }
-  },[])
+  },[talentInformationData])
 
   return <div className={styles.pieContainerItem}>
     <Row align='stretch' className={styles.pieContainerItem}>
       <Col span={12} style={{display:'flex',alignItems:'center'}}>
       <Flex vertical flex={1}>
           <Flex className={styles.labelItem} align='center'>
-            <div className={styles.labelItemTitleNumber}>24.47%</div>
+            <div className={styles.labelItemTitleNumber}>{talentInformationData?.SEX_LIST ? getPercent(talentInformationData?.SEX_LIST[0].Item2 , talentInformationData?.SEX_LIST.map(item=>item.Item2).reduce((a,b)=>a+b,0)) : 0}</div>
             <Flex className={styles.labelItemTitle} flex={1} justify='flex-end'>
               <div>男</div>
             </Flex>
             <div className={styles.dot10}></div>
           </Flex>
           <Flex className={styles.labelItem} align='center'>
-            <div className={styles.labelItemTitleNumber}>50.3%</div>
+            <div className={styles.labelItemTitleNumber}>{talentInformationData?.SEX_LIST ? getPercent(talentInformationData?.SEX_LIST[1].Item2 , talentInformationData?.SEX_LIST.map(item=>item.Item2).reduce((a,b)=>a+b,0)) : 0}</div>
             <Flex className={styles.labelItemTitle} flex={1} justify='flex-end'>
               <div>女</div>
             </Flex>
@@ -434,13 +453,14 @@ const GenderPieChart = () => {
 
 const NationalPieChart = () => {
 
+  const { talentInformationData } = useModel('Dashboard.model')
+
   const { styles } = useStyles()
   const containerRef = useRef<HTMLDivElement>(null)
 
   const chart = useRef<any>(null)
 
   const renderBarChart = (container:HTMLDivElement) => {
-    console.log(container,container.clientHeight,container.clientWidth,'=================>')
     const chart = new Chart({
       container,
       width:container?.clientWidth,
@@ -461,8 +481,8 @@ const NationalPieChart = () => {
         "value": 20501982
       },
     ])
-    .encode('y', 'value')
-    .encode('color', 'name')
+    .encode('y', 'Item2')
+    .encode('color', 'Item1')
     // .style('stroke', 'white')
     .style('inset', 1)
     // .style('radius', 5)
@@ -492,8 +512,12 @@ const NationalPieChart = () => {
   useEffect(()=>{
     if (!chart.current) {
       chart.current = renderBarChart(containerRef.current as unknown as HTMLDivElement);
+    }else {
+      if(talentInformationData?.NAT_LIST) {
+        chart.current.changeData(talentInformationData?.NAT_LIST)
+      }
     }
-  },[])
+  },[talentInformationData])
 
   return <div className={styles.pieContainerItem}>
     <Row align='stretch' className={styles.pieContainerItem}>
@@ -507,14 +531,14 @@ const NationalPieChart = () => {
             <Flex className={styles.labelItemTitle} flex={1} justify='flex-end'>
               <div>外籍</div>
             </Flex>
-            <div className={styles.labelItemTitleNumber}>24.47%</div>
+            <div className={styles.labelItemTitleNumber}>{talentInformationData?.NAT_LIST ? getPercent(talentInformationData?.NAT_LIST[0].Item2 , talentInformationData?.NAT_LIST.map(item=>item.Item2).reduce((a,b)=>a+b,0)) : 0}</div>
           </Flex>
           <Flex className={styles.labelItem} align='center'>
             <div className={styles.dot13}></div>
             <Flex className={styles.labelItemTitle} flex={1} justify='flex-end'>
               <div>中国</div>
             </Flex>
-            <div className={styles.labelItemTitleNumber}>50.3%</div>
+            <div className={styles.labelItemTitleNumber}>{talentInformationData?.NAT_LIST ? getPercent(talentInformationData?.NAT_LIST[1].Item2 , talentInformationData?.NAT_LIST.map(item=>item.Item2).reduce((a,b)=>a+b,0)) : 0}</div>
           </Flex>
         </Flex>
       </Col>

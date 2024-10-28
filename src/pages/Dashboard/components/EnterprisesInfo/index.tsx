@@ -1,5 +1,5 @@
 import {  } from 'react'
-import {  } from '@umijs/max'
+import { useModel } from '@umijs/max'
 import { Flex } from 'antd'
 import { createStyles } from 'antd-style'
 
@@ -84,11 +84,14 @@ const useStyles = createStyles(() => ({
 }))
 
 const RegisteredEnterpriseInfo = () => {
+
+  const { enterpriseInformationData } = useModel('Dashboard.model')
+
   const { styles } = useStyles()
   return (<>
     <div className={styles.registeredEnterpriseInfo}>
       <div className={styles.statics}>
-        <span className={styles.staticsNumber}>538</span>
+        <span className={styles.staticsNumber}> {enterpriseInformationData?.EIR_REGISTERED_ENTERPRISE || 0} </span>
         <span className={styles.unit}> 家</span>
       </div>
       <div className={styles.contentBoxHeaderTitle}>注册企业</div>
@@ -97,11 +100,14 @@ const RegisteredEnterpriseInfo = () => {
 }
 
 const IndustryProfessionalsInfo = () => {
+
+  const { talentInformationData } = useModel('Dashboard.model')
+
   const { styles } = useStyles()
   return (<>
     <div className={styles.IndustryProfessionalsInfo}>
       <div className={styles.statics}>
-        <span className={styles.staticsNumber}>15160</span>
+        <span className={styles.staticsNumber}>{talentInformationData?.TR_INDUSTRIAL_TALENTS ||0}</span>
         <span className={styles.unit}> 个</span>
       </div>
       <div className={styles.contentBoxHeaderTitle}>产业人才</div>
@@ -110,11 +116,14 @@ const IndustryProfessionalsInfo = () => {
 }
 
 const HighQualityTalentsInfo = () => {
+
+  const { talentInformationData } = useModel('Dashboard.model')
+
   const { styles } = useStyles()
   return (<>
     <div className={styles.highQualityTalentsInfo}>
       <div className={styles.statics}>
-        <span className={styles.staticsNumber}>10616</span>
+        <span className={styles.staticsNumber}>{talentInformationData?.TR_HIGH_QUALITY_YOUNG_TALENTS || 0}</span>
         <span className={styles.unit}> 人</span>
       </div>
       <div className={styles.contentBoxHeaderTitle}>高素质青年人才</div>
