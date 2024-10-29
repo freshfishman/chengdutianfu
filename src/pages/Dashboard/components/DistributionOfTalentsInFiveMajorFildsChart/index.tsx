@@ -59,37 +59,93 @@ const useStyles = createStyles(() => ({
     width:'0.46875vw',
     height:'0.46875vw',
     borderRadius:'50%',
-    background:'rgba(0, 120, 250, 1)',
+    background:'linear-gradient(0deg, #101934, #0D5B8D, #2794BC)',
     marginInlineEnd:'0.3125vw',
   },
   lightGreenDot:{
     width:'0.46875vw',
     height:'0.46875vw',
     borderRadius:'50%',
-    background:'rgba(0, 224, 216, 1)',
+    background:'linear-gradient(0deg, #101934, #2B3F82, #5168A6)',
     marginInlineEnd:'0.3125vw',
   },
   lightBlueDot :{
     width:'0.46875vw',
     height:'0.46875vw',
     borderRadius:'50%',
-    background:'#168ECE',
+    background:'linear-gradient(0deg, #272833, #87556B, #C88CA2)',
     marginInlineEnd:'0.3125vw',
   },
   grayDot :{
     width:'0.46875vw',
     height:'0.46875vw',
     borderRadius:'50%',
-    background:'#9EB7CD',
+    background:'linear-gradient(0deg, #272833, #386378, #5893AB)',
     marginInlineEnd:'0.3125vw',
   },
   greenDot :{
     width:'0.46875vw',
     height:'0.46875vw',
     borderRadius:'50%',
-    background:'#0CC890',
+    background:'linear-gradient(0deg, #121B2F, #9F8F66, #D5C198)',
     marginInlineEnd:'0.3125vw',
   },
+  flex:{
+    display:'flex',
+    justifyContent: 'center',
+    alignItems:'center'
+  },
+  textcenter: {
+    position: 'absolute',
+    border: '1px dotted #4F668C',
+    transform: 'translate(-50%,-50%)',
+    left: '50%',
+    top:'50%',
+    fontSize:'0.78125vw',
+    padding:'0.46875vw'
+  },
+  centerText:{
+    position: 'absolute',
+    width: '5vw',
+    height:'5vw',
+    border: '1px dotted #4F668C',
+    transform: 'translate(-50%,-50%)',
+    left: '50%',
+    top:'50%',
+    borderRadius: '50%',
+    lineHeight:'4.21875vw',
+    fontSize:'0.78125vw',
+    padding:'0.46875vw'
+  },
+  chartOuterContainer:{
+    height:'11.25vw',
+    width:'11.25vw',
+    borderRadius:'50%',
+    background:'rgba(20, 41, 115, 0.3)',
+    padding:'0.78125vw',
+    display:'flex',
+    justifyContent: 'center',
+    alignItems:'stretch'
+  },
+  chartInnerContainer:{
+    borderRadius:'50%',
+    border:'2px solid rgba(99, 125, 160, 1)',
+    width:'100%',
+    padding:'0.78125vw'
+  },
+  bg1:{
+    width:'100%',
+    height:'100%',
+    borderRadius:'50%',
+    background:'linear-gradient(0deg, rgba(13, 31, 67, 0.6), rgba(18, 37, 79, 0.6), rgba(21, 51, 126, 0.6))',
+    padding:'0.46875vw'
+  },
+  bg2:{
+    width:'100%',
+    height:'100%',
+    borderRadius:'50%',
+    background:'linear-gradient(0deg, rgba(19, 36, 79, 0.6), rgba(29, 51, 99, 0.6), rgba(43, 66, 121, 0.6))',
+  }
 }))
 
 
@@ -108,6 +164,8 @@ const DistributionOfTalentsInFiveMajorFildsChart = () => {
       container,
       width:container?.clientWidth,
       height: container?.clientHeight,
+      inset:0,
+      margin:0
     });
     chart.coordinate({ type: 'theta', innerRadius: 0.8,outerRadius: 1.0 });
 
@@ -138,9 +196,9 @@ const DistributionOfTalentsInFiveMajorFildsChart = () => {
     ])
     .encode('y', 'Item2')
     .encode('color', 'Item1')
-    .style('stroke', 'white')
+    // .style('stroke', 'white')
     .style('inset', 1)
-    .style('radius', 5)
+    // .style('radius', 5)
     .scale('color', {
       palette: 'spectral',
       offset: (t) => t * 0.8 + 0.1,
@@ -155,7 +213,7 @@ const DistributionOfTalentsInFiveMajorFildsChart = () => {
     .legend(false)
     .scale('color', {
       type: 'ordinal',
-      range: ['#0078FA', '#00E0D8', '#168ECE', '#9EB7CD', '#0CC890'],
+      range: ['linear-gradient(0deg, #101934, #0D5B8D, #2794BC)', 'linear-gradient(0deg, #101934, #2B3F82, #5168A6)', 'linear-gradient(0deg, #272833, #87556B, #C88CA2)', 'linear-gradient(0deg, #272833, #386378, #5893AB)', 'linear-gradient(0deg, #121B2F, #9F8F66, #D5C198)'],
     });
 
     // 渲染可视化
@@ -214,7 +272,22 @@ const DistributionOfTalentsInFiveMajorFildsChart = () => {
             </Flex>
           </Flex>
         </Col>
-        <Col span={12} ref={containerRef}>
+        <Col span={12}  className={styles.flex}>
+          <Flex>
+            <div className={styles.chartOuterContainer}>
+                <div className={styles.chartInnerContainer}>
+                  <div style={{ width: '100%', height: '100%' }} ref={containerRef}></div>
+                  <div className={[styles.centerText,styles.flex].join(' ')}>
+                    <div className={styles.bg1}>
+                      <div className={styles.bg2}></div>
+                    </div>
+                  </div>
+                  <div className={[styles.centerText,styles.flex].join(' ')}>
+                    <div >人才分布</div>
+                  </div>
+                </div>
+            </div>
+          </Flex>
         </Col>
       </Row>
     </ContentBoxContent>
