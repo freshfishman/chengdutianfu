@@ -233,10 +233,9 @@ const DistributionOfTalentsInFiveMajorFildsChart = () => {
   useEffect(()=>{
     if (!chart.current) {
       chart.current = renderBarChart(containerRef.current as unknown as HTMLDivElement);
-    } else {
-      if(talentInformationData?.TER_LIST) {
-        chart.current.changeData(talentInformationData?.TER_LIST)
-      }
+    }
+    if(talentInformationData?.TER_LIST) {
+      chart.current.changeData(talentInformationData?.TER_LIST)
     }
   },[talentInformationData])
 
@@ -255,27 +254,27 @@ const DistributionOfTalentsInFiveMajorFildsChart = () => {
               <Flex className={styles.labelItem} align='center'>
                 <div className={styles.blueDot}></div>
                 <Flex flex={1}>现代生物技术药</Flex>
-                <div>{talentInformationData?.TER_LIST ? getPercent(talentInformationData?.TER_LIST[0].Item2 , talentInformationData?.TER_LIST.map(item=>item.Item2).reduce((a,b)=>a+b,0)) : 0}</div>
+                <div>{talentInformationData?.TER_LIST ? getPercent(talentInformationData?.TER_LIST[0].Item2 , talentInformationData?.TER_LIST.map(item=>item.Item2)?.reduce((a,b)=>a+b,0)) : 0}</div>
               </Flex>
               <Flex className={styles.labelItem}>
                 <div className={styles.lightGreenDot}></div>
                 <Flex flex={1}>化学创新药</Flex>
-                <div>{talentInformationData?.TER_LIST ? getPercent(talentInformationData?.TER_LIST[1].Item2 , talentInformationData?.TER_LIST.map(item=>item.Item2).reduce((a,b)=>a+b,0)) : 0}</div>
+                <div>{talentInformationData?.TER_LIST ? getPercent(talentInformationData?.TER_LIST[1].Item2 , talentInformationData?.TER_LIST.map(item=>item.Item2)?.reduce((a,b)=>a+b,0)) : 0}</div>
               </Flex>
               <Flex className={styles.labelItem}>
                 <div className={styles.lightBlueDot}></div>
                 <Flex flex={1}>高性能医疗器械</Flex>
-                <div>{talentInformationData?.TER_LIST ? getPercent(talentInformationData?.TER_LIST[2].Item2 , talentInformationData?.TER_LIST.map(item=>item.Item2).reduce((a,b)=>a+b,0)) : 0}</div>
+                <div>{talentInformationData?.TER_LIST ? getPercent(talentInformationData?.TER_LIST[2].Item2 , talentInformationData?.TER_LIST.map(item=>item.Item2)?.reduce((a,b)=>a+b,0)) : 0}</div>
               </Flex>
               <Flex className={styles.labelItem}>
                 <div className={styles.grayDot}></div>
                 <Flex flex={1}>专业外包服务</Flex>
-                <div>{talentInformationData?.TER_LIST ? getPercent(talentInformationData?.TER_LIST[3].Item2 , talentInformationData?.TER_LIST.map(item=>item.Item2).reduce((a,b)=>a+b,0)) : 0}</div>
+                <div>{talentInformationData?.TER_LIST ? getPercent(talentInformationData?.TER_LIST[3].Item2 , talentInformationData?.TER_LIST.map(item=>item.Item2)?.reduce((a,b)=>a+b,0)) : 0}</div>
               </Flex>
               <Flex className={styles.labelItem}>
                 <div className={styles.greenDot}></div>
                 <Flex flex={1}>健康服务</Flex>
-                <div>{talentInformationData?.TER_LIST ? getPercent(talentInformationData?.TER_LIST[4].Item2 , talentInformationData?.TER_LIST.map(item=>item.Item2).reduce((a,b)=>a+b,0)) : 0}</div>
+                <div>{talentInformationData?.TER_LIST ? getPercent(talentInformationData?.TER_LIST[4].Item2 , talentInformationData?.TER_LIST.map(item=>item.Item2)?.reduce((a,b)=>a+b,0)) : 0}</div>
               </Flex>
             </Flex>
           </Flex>

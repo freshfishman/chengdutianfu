@@ -5,7 +5,9 @@ import { request } from "@umijs/max";
  */
 export async function getUserList(params?: any,params1?:any) {
   const res = await request<{
-    data: USERMANAGEMENT.USERMANAGEMENT[]
+    data: USERMANAGEMENT.USERMANAGEMENT[],
+    total: number,
+    success: boolean;
   }>('/CommonWebApi/GetUserListInfo', {
     method: 'POST',
     data: {
@@ -16,7 +18,7 @@ export async function getUserList(params?: any,params1?:any) {
   });
   return {
     list:res.data,
-    total:res.data.length
+    total:res.total
   }
 }
 

@@ -130,7 +130,7 @@ const Login: React.FC = () => {
         if (msg.data.isAdmin) {
           history.push(urlParams.get('redirect') || '/');
         } else {
-          history.push('/datav/dashboard');
+          history.push('/dashboard');
         }
 
         return;

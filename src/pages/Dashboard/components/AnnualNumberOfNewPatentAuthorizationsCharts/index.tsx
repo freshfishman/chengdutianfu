@@ -16,7 +16,7 @@ const useStyles = createStyles(() => ({
 const AnnualNumberOfNewPatentAuthorizationsCharts = () => {
 
 
-  const { talentInformationData } = useModel('Dashboard.model')
+  const { talentInformationData, } = useModel('Dashboard.model')
 
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -125,24 +125,21 @@ const AnnualNumberOfNewPatentAuthorizationsCharts = () => {
   useEffect(()=>{
     if (!chart.current) {
       chart.current = renderBarChart(containerRef.current as unknown as HTMLDivElement);
-    }else {
-      if(talentInformationData?.TALENTS_GROWTH_TREND) {
-
-        const data : {
-          year:string,
-          value:number
-        }[] = []
-        const keys = Object.keys(talentInformationData?.TALENTS_GROWTH_TREND).sort()
-        // chart.current.changeData(talentInformationData?.)
-        keys.forEach(item=>{
-          data.push({
-            year:moment(item).format('YYYY'),
-            value:talentInformationData?.TALENTS_GROWTH_TREND[item]
-          })
+    }
+    if(talentInformationData?.TALENTS_GROWTH_TREND) {
+      const data : {
+        year:string,
+        value:number
+      }[] = []
+      const keys = Object.keys(talentInformationData?.TALENTS_GROWTH_TREND).sort()
+      // chart.current.changeData(talentInformationData?.)
+      keys.forEach(item=>{
+        data.push({
+          year:moment(item).format('YYYY'),
+          value:talentInformationData?.TALENTS_GROWTH_TREND[item]
         })
-        chart.current.changeData(data)
-      }
-
+      })
+      chart.current.changeData(data)
     }
   },[talentInformationData])
 
@@ -150,7 +147,7 @@ const AnnualNumberOfNewPatentAuthorizationsCharts = () => {
     <div>
       <ContentBoxTitle title='生物城人才增长趋势' subTitle='ANNUAL NUMBER OF NEW PATENT AUTHORIZATIONS' />
       <ContentBoxContent>
-        <div ref={containerRef} className={styles.annualNumberOfNewPatentAuthorizationsCharts}>111</div>
+        <div ref={containerRef} className={styles.annualNumberOfNewPatentAuthorizationsCharts}></div>
       </ContentBoxContent>
     </div>
   );

@@ -108,10 +108,9 @@ const LeadingByTechnologyBasedEnterprises = () => {
   useEffect(()=>{
     if (!chart.current) {
       chart.current = renderBarChart(containerRef.current as unknown as HTMLDivElement);
-    }else {
-      if(enterpriseInformationData?.ETYPE_LIST) {
-        chart.current.changeData(enterpriseInformationData?.ETYPE_LIST)
-      }
+    }
+    if(enterpriseInformationData?.ETYPE_LIST) {
+      chart.current.changeData(enterpriseInformationData?.ETYPE_LIST)
     }
   },[enterpriseInformationData])
 

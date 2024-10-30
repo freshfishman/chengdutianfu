@@ -47,23 +47,8 @@ const TalentAppealManagement: React.FC = () => {
       dataIndex: 'isResolved',
       ellipsis:true,
       valueType: 'select',
-      valueEnum: {
-        all: { text: '超长'.repeat(50) },
-        open: {
-          text: '未解决',
-          status: 'Error',
-        },
-        closed: {
-          text: '已解决',
-          status: 'Success',
-          disabled: true,
-        },
-        processing: {
-          text: '解决中',
-          status: 'Processing',
-        },
-      },
-      width:'10%'
+      width:'10%',
+      renderText:text=>text?'已解决' : '未解决'
     },
   ]
 

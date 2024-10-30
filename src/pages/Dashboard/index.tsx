@@ -1,10 +1,64 @@
 import { useModel } from '@umijs/max'
 import { createStyles } from 'antd-style'
 import { Col, Row } from 'antd'
-import { TopHeader,GatheringOfHighLevelTalentsChart,LeadingByTechnologyBasedEnterprises,DistributionOfTalentsInFiveMajorFildsChart,EnterprisesInfo,HeatMap,AnnualNumberOfNewPatentAuthorizationsCharts,EmpoweringHighLevelTalents, BioCityTalentAnalysisChart } from './components'
+import {
+  TopHeader,
+  GatheringOfHighLevelTalentsChart,
+  LeadingByTechnologyBasedEnterprises,
+  DistributionOfTalentsInFiveMajorFildsChart,
+  EnterprisesInfo,
+  HeatMap,
+  AnnualNumberOfNewPatentAuthorizationsCharts,
+  EmpoweringHighLevelTalents,
+  BioCityTalentAnalysisChart,
+  EducationBackgroundDistribution
+} from './components';
 
 import DashBoardBg from '@/assets/dashboard-bg.png'
-import { useEffect } from 'react'
+import { useEffect,FC } from 'react'
+
+const RegionalIndustryTalentAnalysis:FC = () => {
+  return <Row gutter={30}>
+  <Col span={8}>
+    <div>
+      <GatheringOfHighLevelTalentsChart />
+    </div>
+    <div className='bar-container' style={{marginBlockStart:'1.04167vw'}}>
+      <LeadingByTechnologyBasedEnterprises />
+    </div>
+    <div className='bar-container' style={{marginBlockStart:'1.04167vw'}}>
+      <DistributionOfTalentsInFiveMajorFildsChart />
+    </div>
+  </Col>
+  <Col span={8}>
+    <div>
+      <EnterprisesInfo />
+    </div>
+    <div style={{marginBlockStart:'1.25vw'}}>
+      <HeatMap />
+    </div>
+    <div style={{marginBlockStart:'1.04167vw'}}>
+      <AnnualNumberOfNewPatentAuthorizationsCharts />
+    </div>
+  </Col>
+  <Col span={8}>
+    <div>
+      <EmpoweringHighLevelTalents />
+    </div>
+    <div style={{marginBlockStart:'1.04167vw'}}>
+      <BioCityTalentAnalysisChart />
+    </div>
+  </Col>
+</Row>
+}
+
+const IndustryTalentsAnalysis:FC = () => {
+  return <Row gutter={30}>
+    <Col span={8}>
+      <EducationBackgroundDistribution />
+    </Col>
+  </Row>
+}
 
 
 const useStyles = createStyles(() => ({
@@ -23,7 +77,7 @@ const useStyles = createStyles(() => ({
 }))
 const Dashboard = () => {
 
-  const { getEnterpriseInformationData,getTalentInformationData,enterpriseInformationData,talentInformationData,tabIndex,setTabIndex } = useModel('Dashboard.model')
+  const { getEnterpriseInformationData,getTalentInformationData,tabIndex, } = useModel('Dashboard.model')
 
   const { styles} = useStyles()
 
@@ -40,38 +94,12 @@ const Dashboard = () => {
     <TopHeader />
     {/* 内容 */}
     <div className={styles.dashboardContent}>
-      <Row gutter={30}>
-        <Col span={8}>
-          <div>
-            <GatheringOfHighLevelTalentsChart />
-          </div>
-          <div className='bar-container' style={{marginBlockStart:'1.04167vw'}}>
-            <LeadingByTechnologyBasedEnterprises />
-          </div>
-          <div className='bar-container' style={{marginBlockStart:'1.04167vw'}}>
-            <DistributionOfTalentsInFiveMajorFildsChart />
-          </div>
-        </Col>
-        <Col span={8}>
-          <div>
-            <EnterprisesInfo />
-          </div>
-          <div style={{marginBlockStart:'1.25vw'}}>
-            <HeatMap />
-          </div>
-          <div style={{marginBlockStart:'1.04167vw'}}>
-            <AnnualNumberOfNewPatentAuthorizationsCharts />
-          </div>
-        </Col>
-        <Col span={8}>
-          <div>
-            <EmpoweringHighLevelTalents />
-          </div>
-          <div style={{marginBlockStart:'1.04167vw'}}>
-            <BioCityTalentAnalysisChart />
-          </div>
-        </Col>
-      </Row>
+      {
+        tabIndex === 0
+        ?<RegionalIndustryTalentAnalysis />
+        :<IndustryTalentsAnalysis />
+      }
+
     </div>
   </div>
 }

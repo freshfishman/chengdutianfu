@@ -1,11 +1,23 @@
-import TopHeader from "./TopHeader";
-import GatheringOfHighLevelTalentsChart from "./GatheringOfHighLevelTalentsChart";
-import LeadingByTechnologyBasedEnterprises from "./LeadingByTechnologyBasedEnterprises";
-import DistributionOfTalentsInFiveMajorFildsChart from "./DistributionOfTalentsInFiveMajorFildsChart";
-import EnterprisesInfo from "./EnterprisesInfo";
-import HeatMap from "./HeatMap";
-import AnnualNumberOfNewPatentAuthorizationsCharts from "./AnnualNumberOfNewPatentAuthorizationsCharts";
-import EmpoweringHighLevelTalents from "./EmpoweringHighLevelTalents";
-import BioCityTalentAnalysisChart from "./BioCityTalentAnalysisChart";
+import AnnualNumberOfNewPatentAuthorizationsCharts from './AnnualNumberOfNewPatentAuthorizationsCharts';
+import BioCityTalentAnalysisChart from './BioCityTalentAnalysisChart';
+import DistributionOfTalentsInFiveMajorFildsChart from './DistributionOfTalentsInFiveMajorFildsChart';
+import EmpoweringHighLevelTalents from './EmpoweringHighLevelTalents';
+import EnterprisesInfo from './EnterprisesInfo';
+import GatheringOfHighLevelTalentsChart from './GatheringOfHighLevelTalentsChart';
+import HeatMap from './HeatMap';
+import LeadingByTechnologyBasedEnterprises from './LeadingByTechnologyBasedEnterprises';
+import TopHeader from './TopHeader';
+import EducationBackgroundDistribution from './EducationalBackgroundDistribution';
 
-export { TopHeader, GatheringOfHighLevelTalentsChart, LeadingByTechnologyBasedEnterprises, DistributionOfTalentsInFiveMajorFildsChart, EnterprisesInfo, HeatMap, AnnualNumberOfNewPatentAuthorizationsCharts, EmpoweringHighLevelTalents,BioCityTalentAnalysisChart }
+export {
+  AnnualNumberOfNewPatentAuthorizationsCharts,
+  BioCityTalentAnalysisChart,
+  DistributionOfTalentsInFiveMajorFildsChart,
+  EmpoweringHighLevelTalents,
+  EnterprisesInfo,
+  GatheringOfHighLevelTalentsChart,
+  HeatMap,
+  LeadingByTechnologyBasedEnterprises,
+  TopHeader,
+  EducationBackgroundDistribution
+};

@@ -168,10 +168,9 @@ const DegreePieChart = () => {
   useEffect(()=>{
     if (!chart.current) {
       chart.current = renderBarChart(containerRef.current as unknown as HTMLDivElement);
-    }else{
-      if(talentInformationData?.EB_LIST) {
-        chart.current.changeData(talentInformationData?.EB_LIST)
-      }
+    }
+    if(talentInformationData?.EB_LIST) {
+      chart.current.changeData(talentInformationData?.EB_LIST)
     }
   },[talentInformationData])
 
@@ -300,10 +299,9 @@ const AgePieChart = () => {
   useEffect(()=>{
     if (!chart.current) {
       chart.current = renderBarChart(containerRef.current as unknown as HTMLDivElement);
-    }else {
-      if(talentInformationData?.AGE_LIST) {
-        chart.current.changeData(talentInformationData?.AGE_LIST)
-      }
+    }
+    if(talentInformationData?.AGE_LIST) {
+      chart.current.changeData(talentInformationData?.AGE_LIST)
     }
   },[talentInformationData])
 
@@ -338,7 +336,7 @@ const AgePieChart = () => {
           <Flex className={styles.labelItem} align='center'>
             <div className={styles.dot9}></div>
             <Flex className={styles.labelItemTitle} flex={1} justify='flex-end'>
-              <div>51岁及以下</div>
+              <div>51岁及以上</div>
             </Flex>
             <div className={styles.labelItemTitleNumber}>{talentInformationData?.AGE_LIST ? getPercent(talentInformationData?.AGE_LIST[3].Item2 , talentInformationData?.AGE_LIST.map(item=>item.Item2).reduce((a,b)=>a+b,0)) : 0}</div>
           </Flex>
@@ -418,10 +416,9 @@ const GenderPieChart = () => {
   useEffect(()=>{
     if (!chart.current) {
       chart.current = renderBarChart(containerRef.current as unknown as HTMLDivElement);
-    }else{
-      if(talentInformationData?.SEX_LIST) {
-        chart.current.changeData(talentInformationData?.SEX_LIST)
-      }
+    }
+    if(talentInformationData?.SEX_LIST) {
+      chart.current.changeData(talentInformationData?.SEX_LIST)
     }
   },[talentInformationData])
 
@@ -521,10 +518,9 @@ const NationalPieChart = () => {
   useEffect(()=>{
     if (!chart.current) {
       chart.current = renderBarChart(containerRef.current as unknown as HTMLDivElement);
-    }else {
-      if(talentInformationData?.NAT_LIST) {
-        chart.current.changeData(talentInformationData?.NAT_LIST)
-      }
+    }
+    if(talentInformationData?.NAT_LIST) {
+      chart.current.changeData(talentInformationData?.NAT_LIST)
     }
   },[talentInformationData])
 
