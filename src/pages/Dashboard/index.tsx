@@ -32,10 +32,6 @@ const Dashboard = () => {
   }
 
   useEffect(()=>{
-    console.log(talentInformationData,enterpriseInformationData)
-  },[enterpriseInformationData,talentInformationData])
-
-  useEffect(()=>{
     getData()
   },[])
 

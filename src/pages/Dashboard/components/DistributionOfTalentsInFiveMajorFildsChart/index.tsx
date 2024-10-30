@@ -214,6 +214,14 @@ const DistributionOfTalentsInFiveMajorFildsChart = () => {
     .scale('color', {
       type: 'ordinal',
       range: ['linear-gradient(0deg, #101934, #0D5B8D, #2794BC)', 'linear-gradient(0deg, #101934, #2B3F82, #5168A6)', 'linear-gradient(0deg, #272833, #87556B, #C88CA2)', 'linear-gradient(0deg, #272833, #386378, #5893AB)', 'linear-gradient(0deg, #121B2F, #9F8F66, #D5C198)'],
+    })
+    .tooltip({
+      items: [
+        (d) => ({
+          name: d.Item1,
+          value: d.Item2,
+        })
+      ],
     });
 
     // 渲染可视化

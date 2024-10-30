@@ -51,5 +51,6 @@ export default {
   'menu.editor.koni': '拓扑编辑器',
   'menu.talentappealmanagement':'人才诉求管理',
   'menu.talentresumemanagement':'人才简历管理',
-  'menu.masterdata':'基础数据'
+  'menu.masterdata':'基础数据',
+  'menu.usermanagement':'用户管理',
 };

@@ -117,7 +117,7 @@ export const ContentBoxTitle: React.FC<{
   const { styles }  =  useStyles()
 
   return <Flex className={styles.contentBoxHeader} align='center'>
-    <div className={styles.contentBoxHeaderTitle}>{`${title} `}</div>
+    <div className={styles.contentBoxHeaderTitle} style={{minWidth:`calc(1vw * ${title.length + 1})`}}>{`${title} `}</div>
     <div className={styles.contentBoxHeaderSubTitle}>{subTitle}</div>
   </Flex>
 }

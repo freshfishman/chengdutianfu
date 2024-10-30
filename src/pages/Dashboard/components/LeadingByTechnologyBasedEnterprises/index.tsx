@@ -26,7 +26,7 @@ const LeadingByTechnologyBasedEnterprises = () => {
       container,
       width:container?.clientWidth,
       height: container?.clientHeight,
-      insetTop:40,
+      marginTop:20,
       autoFit:true,
     });
 
@@ -42,14 +42,12 @@ const LeadingByTechnologyBasedEnterprises = () => {
     // 声明可视化
     chart
       .interval() // 创建一个 Interval 标记
-      .data(data) // 绑定数据
       .encode('x', 'Item1') // 编码 x 通道
       .encode('y', 'Item2') // 编码 y 通道
       .encode('key', 'genre') // 指定 key
       .animate('update', { duration: 300 })// 指定更新动画的时间
       .style('fill', 'linear-gradient(0deg, rgba(91, 214, 255, 0.65) 0%,  rgba(49, 116, 255, 0.65) 100%)') //柱状图背景颜色
       .style('maxWidth', document.documentElement.clientWidth / 100 * 1.25)
-      .style('paddingTop',40)
       .axis({
         y:{
           line:true,
@@ -78,7 +76,6 @@ const LeadingByTechnologyBasedEnterprises = () => {
       })
       .label({
         text:(d, i, data, { channel }) => {
-          console.log(d,i,data,channel)
           return channel.y[i]
         }, // 聚合图形的数据标签,
         fontSize:'0.625vw',
@@ -93,6 +90,14 @@ const LeadingByTechnologyBasedEnterprises = () => {
           fill:'#fff'
         },
       })
+      .tooltip({
+        items: [
+          (d) => ({
+            name: d.Item1,
+            value: d.Item2,
+          })
+        ],
+      });
 
     // 渲染可视化
     chart.render();

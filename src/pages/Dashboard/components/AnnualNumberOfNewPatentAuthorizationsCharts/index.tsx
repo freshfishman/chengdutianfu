@@ -108,7 +108,14 @@ const AnnualNumberOfNewPatentAuthorizationsCharts = () => {
       // })
     // 渲染可视化
 
-    chart.point().encode('x', (d) => d.year).encode('y', 'value');
+    chart.point().encode('x', (d) => d.year).encode('y', 'value').tooltip({
+      items: [
+        (d) => ({
+          name: d.year,
+          value: d.value,
+        })
+      ],
+    });
 
     chart.render();
 
@@ -116,7 +123,6 @@ const AnnualNumberOfNewPatentAuthorizationsCharts = () => {
   }
 
   useEffect(()=>{
-    console.log(talentInformationData,'=======>')
     if (!chart.current) {
       chart.current = renderBarChart(containerRef.current as unknown as HTMLDivElement);
     }else {

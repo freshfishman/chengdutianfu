@@ -30,25 +30,30 @@ export default [
   {
     path: '/welcome',
     name: 'welcome',
-    icon: 'smile',
+    // icon: 'smile',
     component: './Welcome',
   },
   {
     path: '/talentappealmanagement',
     name: 'talentappealmanagement',
-    icon: 'smile',
+    // icon: 'smile',
     component: './TalentAppealManagement',
   },
   {
     path: '/talentresumemanagement',
     name: 'talentresumemanagement',
-    icon: 'smile',
+    // icon: 'smile',
     component: './TalentResumeManagement',
+  },
+  {
+    path: '/usermanagement',
+    name:'usermanagement',
+    component: './UserManagement'
   },
   {
     path: '/masterdata',
     name: 'masterdata',
-    icon: 'smile',
+    // icon: 'smile',
     component: './MasterDataManagement',
   },
   // {

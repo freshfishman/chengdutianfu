@@ -121,7 +121,6 @@ const DegreePieChart = () => {
   const chart = useRef<any>(null)
 
   const renderBarChart = (container:HTMLDivElement) => {
-    console.log(container,container.clientHeight,container.clientWidth,'=================>')
     const chart = new Chart({
       container,
       width:container?.clientWidth,
@@ -132,28 +131,6 @@ const DegreePieChart = () => {
     chart
     .interval()
     .transform({ type: 'stackY' })
-    .data([
-      {
-        "name": "<5",
-        "value": 19912018
-      },
-      {
-        "name": "5-9",
-        "value": 20501982
-      },
-      {
-        "name": "10-14",
-        "value": 20679786
-      },
-      {
-        "name": "15-19",
-        "value": 21354481
-      },
-      {
-        "name": "20-24",
-        "value": 22604232
-      },
-    ])
     .encode('y', 'Item2')
     .encode('color', 'Item1')
     .style('inset', 1)
@@ -172,6 +149,14 @@ const DegreePieChart = () => {
     .scale('color', {
       type: 'ordinal',
       range: ['linear-gradient(0deg, #101934, #0D5B8D, #2794BC)', 'linear-gradient(0deg, #101934, #2B3F82, #5168A6)', 'linear-gradient(0deg, #272833, #87556B, #C88CA2)', 'linear-gradient(0deg, #272833, #386378, #5893AB)', 'linear-gradient(0deg, #121B2F, #9F8F66, #D5C198)'],
+    })
+    .tooltip({
+      items: [
+        (d) => ({
+          name: d.Item1,
+          value: d.Item2,
+        })
+      ],
     });
 
     // 渲染可视化
@@ -296,6 +281,14 @@ const AgePieChart = () => {
     .scale('color', {
       type: 'ordinal',
       range: ['linear-gradient(0deg, #101934, #AE684E, #D17A58)', 'linear-gradient(0deg, #101934, #123E5E, #01A2F5)', 'linear-gradient(0deg, #272833, #60533B, #DDB657)', 'linear-gradient(0deg, #272833, #386378, #5893AB)', '#0CC890'],
+    })
+    .tooltip({
+      items: [
+        (d) => ({
+          name: d.Item1,
+          value: d.Item2,
+        })
+      ],
     });
 
     // 渲染可视化
@@ -406,6 +399,14 @@ const GenderPieChart = () => {
     .scale('color', {
       type: 'ordinal',
       range: ['linear-gradient(0deg, #101934, #22508C, #3B72C0)', 'linear-gradient(0deg, #101934, #674D5C, #8E7780)', '#168ECE', '#9EB7CD', '#0CC890'],
+    })
+    .tooltip({
+      items: [
+        (d) => ({
+          name: d.Item1,
+          value: d.Item2,
+        })
+      ],
     });
 
     // 渲染可视化
@@ -501,6 +502,14 @@ const NationalPieChart = () => {
     .scale('color', {
       type: 'ordinal',
       range: ['linear-gradient(0deg, #101934, #1D6774, #5AA7B2)', 'linear-gradient(0deg, #101934, #7E784F, #CAB986)', '#168ECE', '#9EB7CD', '#0CC890'],
+    })
+    .tooltip({
+      items: [
+        (d) => ({
+          name: d.Item1,
+          value: d.Item2,
+        })
+      ],
     });
 
     // 渲染可视化
@@ -531,14 +540,14 @@ const NationalPieChart = () => {
             <Flex className={styles.labelItemTitle} flex={1} justify='flex-end'>
               <div>外籍</div>
             </Flex>
-            <div className={styles.labelItemTitleNumber}>{talentInformationData?.NAT_LIST ? getPercent(talentInformationData?.NAT_LIST[0].Item2 , talentInformationData?.NAT_LIST.map(item=>item.Item2).reduce((a,b)=>a+b,0)) : 0}</div>
+            <div className={styles.labelItemTitleNumber}>{talentInformationData?.NAT_LIST ? getPercent(talentInformationData?.NAT_LIST[1].Item2 , talentInformationData?.NAT_LIST.map(item=>item.Item2).reduce((a,b)=>a+b,0)) : 0}</div>
           </Flex>
           <Flex className={styles.labelItem} align='center'>
             <div className={styles.dot13}></div>
             <Flex className={styles.labelItemTitle} flex={1} justify='flex-end'>
               <div>中国</div>
             </Flex>
-            <div className={styles.labelItemTitleNumber}>{talentInformationData?.NAT_LIST ? getPercent(talentInformationData?.NAT_LIST[1].Item2 , talentInformationData?.NAT_LIST.map(item=>item.Item2).reduce((a,b)=>a+b,0)) : 0}</div>
+            <div className={styles.labelItemTitleNumber}>{talentInformationData?.NAT_LIST ? getPercent(talentInformationData?.NAT_LIST[0].Item2 , talentInformationData?.NAT_LIST.map(item=>item.Item2).reduce((a,b)=>a+b,0)) : 0}</div>
           </Flex>
         </Flex>
       </Col>

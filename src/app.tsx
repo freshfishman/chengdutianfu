@@ -53,7 +53,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
   return {
     // actionsRender: () => [<Question key="doc" />, <SelectLang key="SelectLang" />],
     actionsRender: () => [
-      <Button type="link" key="bigscreen" href="/#/dashboard" target="_blank">
+      <Button type="link" key="bigscreen" href={process.env.NODE_ENV === 'production' ? '/CommonWebApi/dist/index.html#/dashboard' : "/#/dashboard"} target="_blank">
         前往大屏
       </Button>,
     ],

@@ -8,7 +8,7 @@ const TalentAppealManagement: React.FC = () => {
     getTalentAppealManagementList,
     {
       manual: true,
-      defaultPageSize:100
+      defaultPageSize:10
     },
   );
 
@@ -97,7 +97,6 @@ const TalentAppealManagement: React.FC = () => {
         {...tableProps}
         options={false}
         search={false}
-        pagination={false}
 
        />
     </PageContainer>
