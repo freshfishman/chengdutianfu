@@ -11,7 +11,8 @@ import {
   AnnualNumberOfNewPatentAuthorizationsCharts,
   EmpoweringHighLevelTalents,
   BioCityTalentAnalysisChart,
-  EducationBackgroundDistribution
+  EducationBackgroundDistribution,
+  TalentCultivtionProject
 } from './components';
 
 import DashBoardBg from '@/assets/dashboard-bg.png'
@@ -55,7 +56,14 @@ const RegionalIndustryTalentAnalysis:FC = () => {
 const IndustryTalentsAnalysis:FC = () => {
   return <Row gutter={30}>
     <Col span={8}>
-      <EducationBackgroundDistribution />
+      <div>
+        <EducationBackgroundDistribution />
+      </div>
+      <div className='bar-container' style={{marginBlockStart:'1.04167vw'}}>
+        <TalentCultivtionProject />
+      </div>
+      <div className='bar-container' style={{marginBlockStart:'1.04167vw'}}>
+      </div>
     </Col>
   </Row>
 }

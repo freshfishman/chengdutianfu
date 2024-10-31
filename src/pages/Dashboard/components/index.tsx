@@ -8,6 +8,7 @@ import HeatMap from './HeatMap';
 import LeadingByTechnologyBasedEnterprises from './LeadingByTechnologyBasedEnterprises';
 import TopHeader from './TopHeader';
 import EducationBackgroundDistribution from './EducationalBackgroundDistribution';
+import TalentCultivtionProject from './TalentCultivtionProject';
 
 export {
   AnnualNumberOfNewPatentAuthorizationsCharts,
@@ -19,5 +20,6 @@ export {
   HeatMap,
   LeadingByTechnologyBasedEnterprises,
   TopHeader,
-  EducationBackgroundDistribution
+  EducationBackgroundDistribution,
+  TalentCultivtionProject
 };
