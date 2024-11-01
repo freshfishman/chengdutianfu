@@ -9,6 +9,7 @@ import LeadingByTechnologyBasedEnterprises from './LeadingByTechnologyBasedEnter
 import TopHeader from './TopHeader';
 import EducationBackgroundDistribution from './EducationalBackgroundDistribution';
 import TalentCultivtionProject from './TalentCultivtionProject';
+import TalentCultivtionProjectCharts from './TalentCultivtionProjectCharts';
 
 export {
   AnnualNumberOfNewPatentAuthorizationsCharts,
@@ -21,5 +22,6 @@ export {
   LeadingByTechnologyBasedEnterprises,
   TopHeader,
   EducationBackgroundDistribution,
-  TalentCultivtionProject
+  TalentCultivtionProject,
+  TalentCultivtionProjectCharts
 };

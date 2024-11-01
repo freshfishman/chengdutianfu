@@ -12,7 +12,8 @@ import {
   EmpoweringHighLevelTalents,
   BioCityTalentAnalysisChart,
   EducationBackgroundDistribution,
-  TalentCultivtionProject
+  TalentCultivtionProject,
+  TalentCultivtionProjectCharts
 } from './components';
 
 import DashBoardBg from '@/assets/dashboard-bg.png'
@@ -63,6 +64,7 @@ const IndustryTalentsAnalysis:FC = () => {
         <TalentCultivtionProject />
       </div>
       <div className='bar-container' style={{marginBlockStart:'1.04167vw'}}>
+        <TalentCultivtionProjectCharts />
       </div>
     </Col>
   </Row>

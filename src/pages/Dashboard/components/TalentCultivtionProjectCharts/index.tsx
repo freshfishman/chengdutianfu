@@ -1,0 +1,120 @@
+import {  } from '@umijs/max'
+import { FC } from 'react'
+import { Flex } from 'antd'
+import { createStyles } from  'antd-style'
+import { ContentBoxContent,ContentBoxTitle } from '../ContentBox'
+import TalentBg from '@/assets/talent-bg.png'
+import ABC from '@/assets/abc.png'
+import MasterDocter from '@/assets/master-docter.png'
+import LeadOversea from '@/assets/lead-oversea.png'
+
+const useStyles = createStyles({
+  wrapper: {
+    height:'calc(13.59375vw - 2px)',
+    paddingInline:'1.09375vw',
+    paddingBlock:'0.625vw',
+    display:'flex',
+    alignItems:'stretch',
+    color:'#fff',
+    justifyContent:'space-between'
+  },
+  listItem: {
+    textAlign:'center',
+    width:'8.90625vw',
+    background:'rgba(20, 41, 115, 0.3)',
+    border:'1px solid rgba(92, 187, 255, 1)'
+  },
+  listItemContent:{
+    minHeight:'2.8125vw',
+    fontSize:'0.9375vw',
+    maxWidth:'5.625vw',
+    marginBlockStart:'0.78125vw',
+  },
+  valueColer:{
+    color:'#00E0FF'
+  },
+  relative:{
+    position:'relative',
+  },
+  listItemValue:{
+    position:'absolute',
+    top:'1.25vw',
+    left:'50%',
+    margin:'auto',
+    transform:'translate(-50%, -50%)',
+    fontSize:'1.25vw'
+  }
+})
+
+/**
+ * @name 列表项
+ * @param title 标题
+ * @param value 内容
+ * @returns
+ *
+ */
+const ListItem:FC<{
+  title:string,
+  img:string,
+  value:number,
+  unit?:React.ReactNode
+}> = ({
+  title,
+  img,
+  value,
+  unit
+}) => {
+
+  const { styles } = useStyles()
+
+  return <div className={styles.relative}>
+    <Flex className={styles.listItem} vertical align='center' justify='space-around'>
+      <div>
+        <img src={img} />
+      </div>
+      <Flex className={styles.listItemContent} align='center'>
+        <div>{title}</div>
+      </Flex>
+    </Flex>
+    <div className={styles.listItemValue}>
+      <span className={styles.valueColer}>{value}</span>
+      <span>{unit}</span>
+    </div>
+  </div>
+}
+
+/**
+ * @name 人才培育工程
+ * @returns
+ */
+const TalentCultivtionProjectCharts:FC = () => {
+
+  const { styles } = useStyles()
+
+  return <div>
+    <ContentBoxTitle title='人才培育工程' subTitle='TALENT CULTIVTION PROJECT' />
+    <ContentBoxContent>
+      <div className={styles.wrapper}>
+        <ListItem
+          title='产业领军人才（A+B+C）'
+          img={ABC}
+          value={12}
+          unit={<span>个</span>}
+        />
+        <ListItem
+          title='产业领军人才中的海归人数'
+          img={LeadOversea}
+          value={12}
+          unit={<span>个</span>}
+        />
+        <ListItem
+          title='硕博人才占比'
+          img={MasterDocter}
+          value={12}
+          unit={<span className={styles.valueColer}>%</span>}
+        />
+      </div>
+    </ContentBoxContent>
+  </div>
+}
+export default TalentCultivtionProjectCharts
