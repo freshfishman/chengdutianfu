@@ -10,6 +10,11 @@ import TopHeader from './TopHeader';
 import EducationBackgroundDistribution from './EducationalBackgroundDistribution';
 import TalentCultivtionProject from './TalentCultivtionProject';
 import TalentCultivtionProjectCharts from './TalentCultivtionProjectCharts';
+import TalentMobilitySituation from './TalentMobilitySituation';
+import AnnualNumberOfNewPatentAuthorizationLineCharts from './AnnualNumberOfNewPatentAuthorizationLineCharts';
+import FutureDemandForTalentPositions from './FutureDemandForTalentPositions';
+import TalentResumeDatabase from './TalentResumeDatabase';
+import TalentDemandSituation from './TalentDemandSituation';
 
 export {
   AnnualNumberOfNewPatentAuthorizationsCharts,
@@ -23,5 +28,10 @@ export {
   TopHeader,
   EducationBackgroundDistribution,
   TalentCultivtionProject,
-  TalentCultivtionProjectCharts
+  TalentCultivtionProjectCharts,
+  TalentMobilitySituation,
+  AnnualNumberOfNewPatentAuthorizationLineCharts,
+  FutureDemandForTalentPositions,
+  TalentResumeDatabase,
+  TalentDemandSituation
 };

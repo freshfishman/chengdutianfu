@@ -52,6 +52,7 @@
     "@jiaminghi/data-view-react": "^1.2.5",
     "@types/node": "^22.8.1",
     "@umijs/route-utils": "^2.2.2",
+    "@visactor/react-vtable": "^1.10.3",
     "antd": "^5.13.2",
     "antd-style": "^3.6.1",
     "classnames": "^2.5.1",

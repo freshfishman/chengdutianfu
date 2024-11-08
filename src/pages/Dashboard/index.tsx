@@ -13,7 +13,12 @@ import {
   BioCityTalentAnalysisChart,
   EducationBackgroundDistribution,
   TalentCultivtionProject,
-  TalentCultivtionProjectCharts
+  TalentCultivtionProjectCharts,
+  TalentMobilitySituation,
+  AnnualNumberOfNewPatentAuthorizationLineCharts,
+  FutureDemandForTalentPositions,
+  TalentResumeDatabase,
+  TalentDemandSituation
 } from './components';
 
 import DashBoardBg from '@/assets/dashboard-bg.png'
@@ -65,6 +70,25 @@ const IndustryTalentsAnalysis:FC = () => {
       </div>
       <div className='bar-container' style={{marginBlockStart:'1.04167vw'}}>
         <TalentCultivtionProjectCharts />
+      </div>
+    </Col>
+    <Col span={8}>
+      <div>
+        <TalentMobilitySituation />
+      </div>
+      <div className='bar-container' style={{marginBlockStart:'1.04167vw'}}>
+        <AnnualNumberOfNewPatentAuthorizationLineCharts />
+      </div>
+      <div className='bar-container' style={{marginBlockStart:'1.04167vw'}}>
+        <FutureDemandForTalentPositions />
+      </div>
+    </Col>
+    <Col span={8}>
+      <div>
+        <TalentResumeDatabase />
+      </div>
+      <div className='bar-container' style={{marginBlockStart:'1.04167vw'}}>
+        <TalentDemandSituation />
       </div>
     </Col>
   </Row>

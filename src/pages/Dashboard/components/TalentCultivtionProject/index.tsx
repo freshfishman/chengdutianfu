@@ -1,4 +1,4 @@
-import {  } from '@umijs/max'
+import { useModel } from '@umijs/max'
 import { FC } from 'react'
 import { Flex } from 'antd'
 import { createStyles } from  'antd-style'
@@ -52,7 +52,7 @@ const useStyles = createStyles({
 const ListItem:FC<{
   title:string,
   img:string,
-  value:number,
+  value?:number,
   unit?:React.ReactNode
 }> = ({
   title,
@@ -87,6 +87,8 @@ const TalentCultivtionProject:FC = () => {
 
   const { styles } = useStyles()
 
+  const { talentInformationData } = useModel('Dashboard.model')
+
   return <div>
     <ContentBoxTitle title='高质量人才引领' subTitle='TALENT CULTIVTION PROJECT' />
     <ContentBoxContent>
@@ -94,19 +96,19 @@ const TalentCultivtionProject:FC = () => {
         <ListItem
           title='产业领军人才（A+B+C）'
           img={ABC}
-          value={12}
+          value={talentInformationData?.TR_INDUSTRY_LEADER_ABC}
           unit={<span>个</span>}
         />
         <ListItem
           title='产业领军人才中的海归人数'
           img={LeadOversea}
-          value={12}
+          value={ talentInformationData?.TR_INDUSTRY_LEADER_RETURNEE }
           unit={<span>个</span>}
         />
         <ListItem
           title='硕博人才占比'
           img={MasterDocter}
-          value={12}
+          value={ talentInformationData?.TR_HIGH_QUALITY_PERSONNEL_DOCTORATE_RATIO }
           unit={<span className={styles.valueColer}>%</span>}
         />
       </div>

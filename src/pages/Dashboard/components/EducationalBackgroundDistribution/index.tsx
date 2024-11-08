@@ -1,6 +1,6 @@
-import {  } from '@umijs/max'
+import { useModel } from '@umijs/max'
 import { FC } from 'react'
-import { Flex } from 'antd'
+import { Flex, Progress } from 'antd'
 import { createStyles } from  'antd-style'
 import { ContentBoxContent,ContentBoxTitle } from '../ContentBox'
 import DashBoard from '@/assets/dashboard.png'
@@ -23,7 +23,23 @@ const useStyles = createStyles({
     borderRadius:'50%',
     background:'rgba(23, 50, 93, 0.6)',
     padding:'0.46875vw',
-    marginBlockEnd:'0.78125vw'
+    marginBlockEnd:'0.78125vw',
+    position:'relative'
+  },
+  number:{
+    width:'5.625vw',
+    height:'5.625vw',
+    position:'absolute',
+    left:'50%',
+    top:'50%',
+    transform:'translate(-50%,-50%)',
+    margin:'auto',
+    borderRadius:'50%',
+    background:'rgba(16, 43, 80, 1)',
+    textAlign:'center',
+    lineHeight:'5.625vw',
+    fontSize:'1.25vw',
+    color:'#00E0FF'
   },
   chartContainerTitle:{
     fontSize:'0.9375vw',
@@ -120,32 +136,57 @@ const EducationBackgroundDistribution:FC = () => {
 
   const { styles } = useStyles()
 
+  const { talentInformationData } = useModel('Dashboard.model')
+
   return <div>
     <ContentBoxTitle title='五大领域人才学历分布' subTitle='EDUCATIONAL BACKGROUND DISTRIBUTION OF TALENTS IN THE FIVE MAJOR FIELDS' />
     <ContentBoxContent>
       <div className={styles.wrapper}>
         <Flex vertical justify='space-around'>
-          <div className={styles.chartContainer}>1</div>
+          <div className={styles.chartContainer}>
+            <div>
+              <Progress
+                type='circle'
+                showInfo={false}
+                percent={talentInformationData?.TR_CHEMICAL_INNOVATION_MASTER_RATIO + talentInformationData?.TR_CHEMICAL_INNOVATION_DOCTORATE_RATIO}
+                // strokeColor={{
+                //   '0%':'#112543',
+                //   '25%':'#112543',
+                //   '50%':'#115278',
+                //   '75%':'#46E2FF',
+                //   '100%':'#45DCFF'
+                // }}
+                // strokeColor={['#112543','#115278','#46E2FF','#45DCFF']}
+                // strokeColor={{
+                //   from:'#46E2FF',
+                //   to:'#45DCFF'
+                // }}
+                strokeWidth={4}
+                size={125*document.documentElement.clientWidth / 1920}
+              />
+            </div>
+            <div className={styles.number}>{talentInformationData?.TR_CHEMICAL_INNOVATION_MASTER_RATIO + talentInformationData?.TR_CHEMICAL_INNOVATION_DOCTORATE_RATIO}%</div>
+          </div>
           <div className={styles.chartContainerTitle}>化学创新药硕博占比</div>
         </Flex>
         <div className={styles.rightContent}>
             <ListItem
               title='专业业务外包'
               img={WaiBao}
-              masterNumber={22}
-              docterNumber={4}
+              masterNumber={talentInformationData?.TR_OUTSOURCING_SERVICE_MASTER_RATIO || 0}
+              docterNumber={talentInformationData?.TR_OUTSOURCING_SERVICE_DOCTORATE_RATIO || 0 }
             />
             <ListItem
               title='现代生物技术药'
               img={Medicine}
-              masterNumber={22}
-              docterNumber={4}
+              masterNumber={ talentInformationData?.TR_MODERN_BIOTECHNOLOGY_MASTER_RATIO }
+              docterNumber={ talentInformationData?.TR_MODERN_BIOTECHNOLOGY_DOCTORATE_RATIO }
             />
             <ListItem
               title='健康服务'
               img={Health}
-              masterNumber={22}
-              docterNumber={4}
+              masterNumber={ talentInformationData?.TR_HEALTH_SERVICE_MASTER_RATIO }
+              docterNumber={ talentInformationData?.TR_HEALTH_SERVICE_DOCTORATE_RATIO }
             />
         </div>
       </div>
