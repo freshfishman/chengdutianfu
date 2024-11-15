@@ -469,16 +469,6 @@ const NationalPieChart = () => {
     chart
     .interval()
     .transform({ type: 'stackY' })
-    .data([
-      {
-        "name": "<5",
-        "value": 19912018
-      },
-      {
-        "name": "5-9",
-        "value": 20501982
-      },
-    ])
     .encode('y', 'Item2')
     .encode('color', 'Item1')
     // .style('stroke', 'white')
@@ -498,13 +488,13 @@ const NationalPieChart = () => {
     .legend(false)
     .scale('color', {
       type: 'ordinal',
-      range: ['linear-gradient(0deg, #101934, #1D6774, #5AA7B2)', 'linear-gradient(0deg, #101934, #7E784F, #CAB986)', '#168ECE', '#9EB7CD', '#0CC890'],
+      range: ['linear-gradient(0deg, #101934, #7E784F, #CAB986)','linear-gradient(0deg, #101934, #1D6774, #5AA7B2)', '#168ECE', '#9EB7CD', '#0CC890'],
     })
     .tooltip({
       items: [
         (d) => ({
           name: d.Item1,
-          value: d.Item2,
+          value: d.Item2 ,
         })
       ],
     });

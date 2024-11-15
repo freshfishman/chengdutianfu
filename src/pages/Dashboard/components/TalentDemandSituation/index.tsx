@@ -92,8 +92,6 @@ const TalentDemandSituation = () => {
     },
   ]
 
-  console.log(data)
-
   useEffect(()=>{
     run()
   },[])

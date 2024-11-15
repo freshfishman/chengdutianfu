@@ -218,7 +218,8 @@ const FutureDemandForTalentPositions = () => {
     .style('dy', -document.documentElement.clientWidth / 1920 * 18)
     .style('fontSize', document.documentElement.clientWidth / 1920 * 18)
     .style('fill', '#fff')
-    .style('textAlign', 'center');
+    .style('textAlign', 'center')
+    .tooltip(false);
 
     chart
     .text()
@@ -229,7 +230,8 @@ const FutureDemandForTalentPositions = () => {
     .style('dy', document.documentElement.clientWidth / 1920 * 18)
     .style('fontSize', document.documentElement.clientWidth / 1920 * 18)
     .style('fill', '#fff')
-    .style('textAlign', 'center');
+    .style('textAlign', 'center')
+    .tooltip(false);
 
     // 渲染可视化
     chart.render();
