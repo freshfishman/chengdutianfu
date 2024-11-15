@@ -87,8 +87,7 @@ const TalentDemandSituation = () => {
       dataIndex: 'appealTime',
       ellipsis:true,
       align:'center',
-      renderText:(text:string)=>moment(text).format('YYYY-DD-MM')
-
+      renderText:(text:string)=>moment(text).format('YYYY-MM-DD')
     },
   ]
 

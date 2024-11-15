@@ -64,6 +64,13 @@ const TalentResumeManagement: React.FC = () => {
               Authorization: localStorage.getItem('token') as unknown as string,
             },
             showUploadList:false,
+            onChange:({file})=>{
+              if(file.response?.success) {
+                submit()
+              }else{
+                message.error(file.response?.msg)
+              }
+            }
           }}
           title="上传人才简历文件"
           accept='.xlsx'

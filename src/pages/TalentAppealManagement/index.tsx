@@ -2,6 +2,7 @@ import { PageContainer, ProFormUploadButton, ProTable } from '@ant-design/pro-co
 import { useAntdTable } from 'ahooks'
 import { getTalentAppealManagementList } from '@/services/enterpriseInformation';
 import React from 'react';
+import { message } from 'antd';
 const TalentAppealManagement: React.FC = () => {
 
   const {tableProps,search} = useAntdTable(
@@ -71,6 +72,13 @@ const TalentAppealManagement: React.FC = () => {
               Authorization: localStorage.getItem('token') as unknown as string,
             },
             showUploadList:false,
+            onChange:({file})=>{
+              if(file.response?.success) {
+                submit()
+              }else{
+                message.error(file.response?.msg)
+              }
+            }
           }}
           title="上传人才诉求文件"
           accept='.xlsx'

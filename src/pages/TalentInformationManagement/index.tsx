@@ -69,6 +69,13 @@ const TalentInformationManagement: React.FC = () => {
               Authorization: localStorage.getItem('token') as unknown as string,
             },
             showUploadList:false,
+            onChange:({file})=>{
+              if(file.response?.success) {
+                submit()
+              }else{
+                message.error(file.response?.msg)
+              }
+            }
           }}
           title="上传企业文件"
           accept='.xlsx'
