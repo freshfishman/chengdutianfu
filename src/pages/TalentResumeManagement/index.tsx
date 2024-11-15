@@ -1,6 +1,7 @@
 import { PageContainer, ProFormUploadButton, ProTable } from '@ant-design/pro-components';
 import { useAntdTable } from 'ahooks'
 import { getTalentResumeManagementList } from '@/services/enterpriseInformation';
+import { message } from 'antd';
 import React from 'react';
 const TalentResumeManagement: React.FC = () => {
 
@@ -65,10 +66,13 @@ const TalentResumeManagement: React.FC = () => {
             },
             showUploadList:false,
             onChange:({file})=>{
-              if(file.response?.success) {
-                submit()
-              }else{
-                message.error(file.response?.msg)
+              if(file.status === 'done') {
+                if(file.response?.success) {
+                  message.success('上传成功')
+                  submit()
+                }else{
+                  message.error(file.response?.msg)
+                }
               }
             }
           }}

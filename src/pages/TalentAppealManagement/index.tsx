@@ -73,10 +73,13 @@ const TalentAppealManagement: React.FC = () => {
             },
             showUploadList:false,
             onChange:({file})=>{
-              if(file.response?.success) {
-                submit()
-              }else{
-                message.error(file.response?.msg)
+              if(file.status === 'done') {
+                if(file.response?.success) {
+                  message.success('上传成功')
+                  submit()
+                }else{
+                  message.error(file.response?.msg)
+                }
               }
             }
           }}

@@ -1,6 +1,7 @@
 import { PageContainer, ProFormUploadButton, ProTable } from '@ant-design/pro-components';
 import { useAntdTable } from 'ahooks'
 import { getEnterpriseInformationList } from '@/services/enterpriseInformation';
+import { message } from 'antd'
 import React from 'react';
 const TalentAppealManagement: React.FC = () => {
 
@@ -69,6 +70,15 @@ const TalentAppealManagement: React.FC = () => {
               Authorization: localStorage.getItem('token') as unknown as string,
             },
             showUploadList:false,
+            onChange:({file})=>{
+              if(file.status === 'done') {
+                if(file.response?.success) {
+                  message.success('上传成功')
+                }else{
+                  message.error(file.response?.msg)
+                }
+              }
+            }
           }}
           title="上传人才报表文件"
           accept='.xlsx'
@@ -82,6 +92,15 @@ const TalentAppealManagement: React.FC = () => {
               Authorization: localStorage.getItem('token') as unknown as string,
             },
             showUploadList:false,
+            onChange:({file})=>{
+              if(file.status === 'done') {
+                if(file.response?.success) {
+                  message.success('上传成功')
+                }else{
+                  message.error(file.response?.msg)
+                }
+              }
+            }
           }}
           title="上传企业报表文件"
           accept='.xlsx'
